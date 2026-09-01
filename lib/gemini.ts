@@ -120,17 +120,34 @@ Ta mission est de rédiger la fiche pédagogique de cours officielle, rigoureuse
 GARDE-FOUS ABSOLUS ET RÈGLES DÉONTOLOGIQUES :
 1. CONTRAINTE FONDAMENTALE SUR LES LIMITES DU PROGRAMME :
    - Tu ne dois JAMAIS inventer d'objectifs pédagogiques, de formules ou de notions scientifiques en dehors du programme officiel qui t'est fourni.
-   - Tu dois STRICTEMENT respecter les limites imposées par le programme sénégalais : ne jamais déborder vers le programme de lycée ou d'autres niveaux (ex: pas de calcul d'incertitudes mathématiques complexes en 4e, pas d'équations hors-programme).
+   - Tu dois STRICTEMENT respecter les limites imposées par le programme sénégalais : ne jamais déborder vers le lycée ou le supérieur (ex: en 3e, loi d'Ohm U = R.I, calcul de puissance P = U.I et énergie W = P.t ou W = R.I².t, concentration C = n/V et Cm = m/V, équivalence acido-basique Ca.Va = Cb.Vb, réactions d'oxydation et actions des acides dilués à froid, combustion des alcanes dans O2).
    - Seuls les contenus et explications pédagogiques associés à chaque objectif spécifique (OS) officiel sont autorisés à varier pour expliciter la notion avec clarté, mais TOUJOURS dans le périmètre strict des savoirs exigibles au collège sénégalais (BFEM / FASTEF).
-2. ANCRAGE LOCAL SÉNÉGALAIS : Les activités préparatoires, les exemples d'application et les exercices doivent impérativement s'ancrer dans l'environnement et la vie quotidienne du Sénégal :
-   - Marchés locaux (ex: Sandaga, Tilène, marché de Kaolack, Saint-Louis, Touba),
-   - Produits et ressources locales (huile d'arachide, sel marin du Lac Rose ou Kaolack, jus de Bissap, mil, riz de la vallée du fleuve, braises de charbon de bois pour le fourneau traditionnel),
-   - Vie quotidienne et infrastructures locales (transports en car rapide, puits traditionnels, pêche côtière à Mbour/Kayar, ombre des arbres ou piquets dans la cour du collège).
-3. STYLE PÉDAGOGIQUE FASTEF :
-   - Fiche d'identification avec prérequis, matériel et objectifs formulés sous forme de verbes d'action observables (OS1, OS2...).
-   - Déroulement séquencé avec activités introductives concrètes, définitions institutionnelles claires, remarques de sécurité et exemples.
-   - Évaluation formative de fin de séance (exercices ciblés vérifiant exclusivement les OS du chapitre) et devoir à la maison.
-4. RESPECT DU SCHÉMA : Tu produis EXCLUSIVEMENT un objet JSON valide conforme au schéma prescrit, sans aucun texte introductif ni balise markdown superflue.`;
+
+2. ARCHITECTURE ET STRUCTURATION DU PLAN (INSPIRÉ DES FASCICULES DE RÉFÉRENCE DE MSP / FASTEF) :
+   Pour chaque chapitre, tu dois formuler un PLAN PÉDAGOGIQUE SOLIDE, HIÉRARCHISÉ ET COHÉRENT, structuré en grandes parties numérotées en chiffres romains (I, II, III...) et sous-parties (1, 2, 3...) :
+   - Formuler un plan clair où chaque point découle logiquement du précédent.
+   - Exemple de structure type pour une partie :
+     * 1) Définition rigoureuse ou Rappel institutionnel (énoncé exact de la loi ou du concept),
+     * 2) Expérience / Activité d'apprentissage (dispositif, observation, interprétation scientifique),
+     * 3) Formule mathématique avec unités précises du Système International (ex: C = n/V avec n en mol, V en L, C en mol/L),
+     * 4) Remarques importantes & Contre-exemples (ex: mélange hétérogène eau+huile n'est pas une solution ; l'acide nitrique attaque le cuivre avec vapeurs rousses mais n'attaque pas l'aluminium),
+     * 5) Application immédiate résolue / Exemple de calcul pas-à-pas.
+
+3. DÉVELOPPEMENT DÉTAILLÉ DES CONTENUS ET DES SECTIONS :
+   Pour chaque section du plan, tu dois impérativement fournir un contenu didactique complet, élégant et professionnel :
+   - "activite" : Dispositif expérimental concret ou activité d'observation (matériel utilisé, protocole étape par étape, observations attendues des élèves).
+   - "definition" : L'énoncé institutionnel ou la formule encadrée avec le nom et les unités de chaque terme.
+   - "texte" : L'explication théorique détaillée, l'interprétation microscopique ou macroscopique, les équations chimiques complètes (globales et ioniques le cas échéant : ex. H+ + OH- -> H2O).
+   - "remarque" : Précautions de sécurité, pièges fréquents d'élèves, propriétés particulières ou cas limites.
+   - "exemples" : 2 à 3 exemples vivants ancrés dans la vie quotidienne et l'environnement sénégalais.
+   - "tableau" : Inclure un tableau récapitulatif comparatif dès que pertinent (ex: tableau des propriétés physiques des métaux Cu, Al, Fe, Zn, Pb avec symboles, masses volumiques, couleurs, conductibilités ; tableau des familles d'alcanes/alcènes/alcynes ; tableau de mesure U = f(I)).
+
+4. ANCRAGE LOCAL SÉNÉGALAIS AUTHENTIQUE :
+   - Produits et ressources locales : eau de javel, lessive locale, eau de cendre, jus de citron, vinaigre, jus de bissap blanc (comme indicateur coloré naturel artisanal), sel du Lac Rose ou de Kaolack, huile d'arachide, grains de mil, charbon de bois.
+   - Vie courante et contexte : visite d'un réparateur de radios du quartier (résistors, codes couleur), pompe hydraulique de puits villageois, atelier de ferronnerie ou de menuiserie métallique (protection anti-rouille, peinture à l'huile), cuisine au réchaud à gaz butane (bouteilles bleues Touba Gaz ou Total).
+
+5. RESPECT DU SCHÉMA JSON :
+   Tu produis EXCLUSIVEMENT un objet JSON valide conforme au schéma prescrit, sans aucun texte introductif ni balise markdown superflue.`;
 }
 
 /**
@@ -140,33 +157,36 @@ export function buildFASTEFUserPrompt(
   chapitre: ProgrammeChapitre,
   parametres: FicheParametres
 ): string {
-  return `Veuillez générer la fiche pédagogique FASTEF officielle pour le chapitre suivant :
+  return `Veuillez générer la fiche pédagogique FASTEF officielle complète et détaillée pour le chapitre suivant :
 
-INFORMATIONS ET CONTRAINTES DE LA SÉANCE :
+INFORMATIONS ET CADRE DE LA SÉANCE :
 - Discipline : ${chapitre.matiere === 'pc' ? 'Physique-Chimie' : 'Mathématiques'}
-- Classe : ${chapitre.classe} de collège (Sénégal)
+- Classe : ${chapitre.classe} de collège (Sénégal - CEM)
 - Titre officiel du chapitre : "${chapitre.titre_chapitre}"
 - Durée effective du cours : ${parametres.duree_reelle} (recommandée : ${chapitre.duree_recommandee})
 - Effectif de la classe : ${parametres.effectif} élèves
 - Établissement : ${parametres.etablissement}
-- Professeur : ${parametres.professeur_nom || 'Enseignant'}
+- Professeur : ${parametres.professeur_nom || 'Enseignant de Sciences Physiques'}
 - Date : ${parametres.date}
 
-DONNÉES DU PROGRAMME OFFICIEL (À NE PAS INVENTER, SOURCE STRICTE) :
-- Objectifs spécifiques officiels à intégrer :
+DONNÉES DU PROGRAMME OFFICIEL (SOURCE MINISTÉRIELLE SÉNÉGALAISE IMMUABLE) :
+- Objectifs d'apprentissage officiels (OS) :
 ${chapitre.objectifs.map((obj, i) => `  * OS${i + 1} : ${obj}`).join('\n')}
 
-- Notions et contenus officiels à couvrir :
+- Contenus officiels prescrits :
 ${chapitre.contenus.map((c) => `  * ${c}`).join('\n')}
 
-- Activité préparatoire / expérimentale suggérée par le programme :
-  "${chapitre.activites_preparatoires_suggerees || 'Expérience pratique ou activité de recherche guidée.'}"
+- Activité préparatoire officielle du document ministériel :
+  "${chapitre.activites_preparatoires_suggerees || 'Activité expérimentale ou de recherche.'}"
 
 - Matériel didactique suggéré :
 ${chapitre.materiel_suggere.map((m) => `  * ${m}`).join('\n')}
 
-INSTRUCTIONS DE RÉDACTION :
-Rédige les sections de déroulement, les définitions, les exemples sénégalais, les exercices d'évaluation (2 à 3 exercices variés : Vrai/Faux ou application directe) et le devoir à la maison conformément au schéma JSON strict.`;
+DIRECTIVES DE RÉDACTION PROFESSIONNELLE :
+1. Construis un PLAN PÉDAGOGIQUE RIGOUREUX (I, II, III...) calqué sur les fascicules de professeurs chevronnés du Sénégal : chaque grand point correspond aux notions clés de la colonne "Contenus" sans rien omettre.
+2. Développe chaque section avec précision : définitions institutionnelles exactes, formules avec unités détaillées, activités pratiques et observations, remarques méthodologiques, applications directes et exemples locaux.
+3. Insère au moins un tableau comparatif ou récapitulatif clair dans les sections appropriées.
+4. Rédige 2 à 3 exercices d'évaluation de niveau BFEM (Vrai/Faux, calculs d'application avec barème suggéré) et un devoir à la maison de consolidation.`;
 }
 
 /**
