@@ -5,6 +5,7 @@ export type FicheStatut = 'brouillon' | 'en_attente' | 'genere' | 'relu' | 'expo
 export type JobStatut = 'en_attente' | 'en_cours' | 'termine' | 'erreur';
 export type PlanType = 'decouverte' | 'mensuel' | 'annuel' | 'etablissement';
 export type PaiementProvider = 'wave' | 'orange_money' | 'gratuit';
+export type MoyenPaiement = 'wave' | 'orange_money';
 
 export interface Profile {
   id: string;

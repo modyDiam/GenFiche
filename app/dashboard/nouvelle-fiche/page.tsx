@@ -45,8 +45,18 @@ function NouvelleFicheContent() {
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [ficheCreated, setFicheCreated] = useState<any | null>(null);
+  const [subStatus, setSubStatus] = useState<any | null>(null);
 
   const supabase = createClient();
+
+  useEffect(() => {
+    fetch('/api/subscription?userId=demo_user')
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.status) setSubStatus(d.status);
+      })
+      .catch((err) => console.warn('Erreur vérif abonnement:', err));
+  }, []);
 
   // 1. Charger les infos enseignant pour pré-remplir
   useEffect(() => {
@@ -170,6 +180,42 @@ function NouvelleFicheContent() {
           Phase 2 — Sélection & Paramétrage
         </span>
       </div>
+
+      {/* Alerte d'état d'abonnement Phase 6 */}
+      {subStatus && (
+        <div className="mb-6">
+          {!subStatus.estEligibleGeneration ? (
+            <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-xl shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <strong className="block text-red-950 font-bold text-xs">
+                  ⚠️ Quota gratuit de découverte épuisé
+                </strong>
+                <p className="text-xs text-red-800">
+                  Votre quota de 2 fiches est atteint. Activez votre pass mensuel (2 500 FCFA) ou annuel via Wave ou Orange Money pour continuer à préparer vos cours.
+                </p>
+              </div>
+              <Link
+                href="/dashboard/abonnement"
+                className="shrink-0 bg-[#0F2C59] hover:bg-[#1E3A8A] text-white font-bold text-xs px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
+              >
+                <span>S'abonner via Wave / OM</span>
+              </Link>
+            </div>
+          ) : !subStatus.hasActiveSubscription ? (
+            <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-xs flex items-center justify-between gap-3">
+              <span>
+                💡 <strong>Mode Découverte actif :</strong> Il vous reste <strong>{subStatus.fichesGratuitesRestantes} fiche(s) gratuite(s)</strong> d'essai.
+              </span>
+              <Link
+                href="/dashboard/abonnement"
+                className="text-xs font-bold text-[#0F2C59] underline shrink-0"
+              >
+                Pass Illimité (2 500 FCFA)
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      )}
 
       <div className="mb-8">
         <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">

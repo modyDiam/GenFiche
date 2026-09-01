@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { BookOpen, User, LogOut, LayoutDashboard, Sparkles, ShieldCheck } from 'lucide-react';
+import { BookOpen, User, LogOut, LayoutDashboard, Sparkles, ShieldCheck, CreditCard } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 export default function Navbar() {
@@ -93,6 +93,18 @@ export default function Navbar() {
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>+ Nouvelle fiche</span>
+              </Link>
+
+              <Link
+                href="/dashboard/abonnement"
+                className={`flex items-center gap-1.5 text-xs sm:text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors ${
+                  pathname === '/dashboard/abonnement'
+                    ? 'bg-amber-400 text-[#0F2C59] font-bold'
+                    : 'text-amber-300 hover:bg-white/10'
+                }`}
+              >
+                <CreditCard className="w-4 h-4 text-amber-400" />
+                <span>Abonnement</span>
               </Link>
 
               <Link
