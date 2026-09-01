@@ -493,46 +493,33 @@ function FicheDetailContent() {
       {/* Affichage des résultats générés */}
       {contenuGenere && (
         <div className="space-y-6">
-          {/* Barre d'exportation Phase 4 (Word & PDF) */}
+          {/* Barre d'exportation exclusive en format PDF officiel */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#0F2C59] flex items-center justify-center font-black shrink-0">
-                <FileText className="w-5 h-5 text-[#0F2C59]" />
+              <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-black shrink-0">
+                <FileText className="w-5 h-5 text-red-600" />
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                  <span>Exporter la fiche au gabarit officiel FASTEF</span>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full border border-emerald-200">
-                    Phase 4 Active
+                  <span>Fiche pédagogique officielle prête (Format PDF A4)</span>
+                  <span className="text-[10px] bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded-full border border-red-200">
+                    Format Unique PDF
                   </span>
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Document complet avec mise en page FASTEF (titres bleu marine, encadrés, tableaux)
+                  Document officiel standardisé FASTEF conforme au programme sénégalais avec schémas, tableaux et mise en page A4.
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5">
-              <button
-                onClick={handleDownloadDocx}
-                disabled={isExportingDocx}
-                className="inline-flex items-center gap-2 bg-[#0F2C59] hover:bg-[#1E3A8A] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg shadow-sm transition-all disabled:opacity-50"
-              >
-                {isExportingDocx ? (
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                ) : (
-                  <FileText className="w-4 h-4 text-amber-400" />
-                )}
-                <span>Télécharger en Word (.docx)</span>
-              </button>
-
+            <div className="flex items-center gap-2.5">
               <Link
                 href={`/dashboard/fiches/${ficheId}/print?chapitreId=${chapitre?.id}`}
                 target="_blank"
-                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#0F2C59] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg shadow-sm transition-all"
+                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
-                <Printer className="w-4 h-4" />
-                <span>Imprimer / Exporter en PDF</span>
+                <Download className="w-4 h-4" />
+                <span>Télécharger la Fiche officielle (PDF)</span>
               </Link>
             </div>
           </div>
