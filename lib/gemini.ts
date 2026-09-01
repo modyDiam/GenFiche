@@ -166,7 +166,7 @@ INFORMATIONS ET CADRE DE LA SÉANCE :
 - Discipline : ${chapitre.matiere === 'pc' ? 'Physique-Chimie' : 'Mathématiques'}
 - Classe : ${chapitre.classe} de collège (Sénégal - CEM)
 - Titre officiel du chapitre : "${chapitre.titre_chapitre}"
-- Durée effective du cours : ${parametres.duree_reelle} (recommandée : ${chapitre.duree_recommandee})
+- Durée officielle de la séance (Immuable, prescrite par le Ministère) : ${chapitre.duree_recommandee}
 - Effectif de la classe : ${parametres.effectif} élèves
 - Établissement : ${parametres.etablissement}
 - Professeur : ${parametres.professeur_nom || 'Enseignant de Sciences Physiques'}

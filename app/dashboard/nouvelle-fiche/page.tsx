@@ -125,7 +125,7 @@ function NouvelleFicheContent() {
       matiere: selectedChapitre.matiere,
       classe: selectedChapitre.classe,
       parametres: {
-        duree_reelle: dureeReelle,
+        duree_reelle: selectedChapitre.duree_recommandee,
         effectif: Number(effectif),
         date: dateSeance,
         etablissement: etablissement,
@@ -539,17 +539,18 @@ function NouvelleFicheContent() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Durée réelle de la fiche *
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                    <span>Durée officielle (Immuable) *</span>
+                    <span className="text-[10px] bg-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">Fixe Ministère</span>
                   </label>
                   <div className="relative">
-                    <Clock className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Clock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
                     <input
                       type="text"
-                      value={dureeReelle}
-                      onChange={(e) => setDureeReelle(e.target.value)}
-                      placeholder="Ex: 4h ou 2h"
-                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0F2C59]"
+                      readOnly
+                      disabled
+                      value={selectedChapitre.duree_recommandee}
+                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-800 font-bold cursor-not-allowed select-none"
                     />
                   </div>
                 </div>
