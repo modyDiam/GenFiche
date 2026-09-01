@@ -228,173 +228,93 @@ export function validateFASTEFJson(data: any): { valid: boolean; errors: string[
 }
 
 /**
- * Génère un contenu FASTEF simulant l'appel Gemini pour le mode démonstration / hors-ligne.
+ * Génère un contenu FASTEF simulant fidèlement le cours en suivant strictement
+ * les objectifs officiels, contenus prescrits et activités préparatoires du chapitre choisi.
  */
 export function generateSimulatedFASTEF(
   chapitre: ProgrammeChapitre,
   parametres: FicheParametres
 ): FicheFASTEFContenu {
-  const isPC = chapitre.matiere === 'pc';
+  // 1. Identification des grands blocs de contenus officiels
+  const mainTitles = chapitre.contenus.filter((c) => !c.startsWith('-'));
+  const planGenerated = mainTitles.length > 0
+    ? mainTitles.map((t, idx) => {
+        const roman = ['I', 'II', 'III', 'IV', 'V', 'VI'][idx] || `${idx + 1}`;
+        return `${roman}. ${t}`;
+      })
+    : [
+        `I. Généralités et définitions sur ${chapitre.titre_chapitre}`,
+        `II. Étude expérimentale et lois physiques`,
+        `III. Applications et résolution de problèmes au Sénégal`
+      ];
 
-  if (isPC) {
+  // 2. Découpage en sections fidèles aux contenus officiels
+  const sectionsGenerated = planGenerated.map((titrePartie, pIdx) => {
+    const rawTheme = mainTitles[pIdx] || chapitre.titre_chapitre;
+    // Récupérer les sous-notions associées
+    const sousNotions = chapitre.contenus
+      .filter((c) => c.startsWith('-'))
+      .slice(pIdx * 3, (pIdx + 1) * 3);
+
     return {
-      prerequis: [
-        "Notion de masse et utilisation de la balance",
-        "Mesure des volumes à l'éprouvette graduée",
-        "Unités usuelles de mesure (gramme, kilogramme, litre, millilitre)"
-      ],
-      materiel: [
-        "Balance électronique de précision (ou balance de Roberval avec masses marquées)",
-        "Éprouvettes graduées de 100 mL et 250 mL",
-        "Échantillons solides (briquettes de granite de Thiès, bois, morceaux d'aluminium)",
-        "Liquides usuels : eau douce, eau de mer du littoral sénégalais, huile d'arachide locale",
-        "Fiches d'activités individuelles et tableau noir"
-      ],
-      objectifs_specifiques: chapitre.objectifs.map((o, idx) => `OS${idx + 1} : ${o}`),
-      concepts_cles: [
-        "Masse volumique (ρ)",
-        "Densité par rapport à l'eau (d)",
-        "Flottabilité des corps",
-        "Unités SI : kg/m³ et unité pratique : g/cm³"
-      ],
-      plan: [
-        "I. Notion et détermination de la masse volumique",
-        "II. La densité d'un corps par rapport à l'eau",
-        "III. Flottabilité et applications pratiques au Sénégal"
-      ],
-      sections: [
-        {
-          titre: "I. Détermination de la masse volumique d'un solide et d'un liquide",
-          activite: "Activité 1 : Pesée de 50 mL d'eau douce et de 50 mL d'huile d'arachide achetée au marché local. Les élèves relèvent les masses respectives et comparent le rapport masse / volume.",
-          definition: "La masse volumique d'un corps homogène est le quotient de sa masse (m) par son volume (V) : ρ = m / V. Dans le Système International, elle s'exprime en kg/m³ (ou g/cm³ en pratique avec 1 g/cm³ = 1000 kg/m³).",
-          remarque: "Attention à la lecture du ménisque sur l'éprouvette graduée : l'œil doit être placé rigoureusement au niveau de la base du ménisque concave.",
-          exemples: [
-            "Masse volumique de l'eau douce : ρ_eau = 1,00 g/cm³ = 1000 kg/m³.",
-            "Masse volumique de l'huile d'arachide de Kaolack : ρ_huile ≈ 0,92 g/cm³ = 920 kg/m³.",
-            "Masse volumique du fer : ρ_fer = 7,8 g/cm³."
-          ],
-          tableau: {
-            colonnes: ["Substance", "Masse mesurée (g)", "Volume (cm³)", "Masse volumique ρ (g/cm³)"],
-            lignes: [
-              ["Eau douce", "100", "100", "1,00"],
-              ["Huile d'arachide", "92", "100", "0,92"],
-              ["Granite local", "135", "50", "2,70"]
-            ]
-          }
-        },
-        {
-          titre: "II. Définition et calcul de la densité par rapport à l'eau",
-          definition: "La densité d'un solide ou d'un liquide par rapport à l'eau est le rapport entre sa masse volumique et celle de l'eau : d = ρ / ρ_eau. La densité est une grandeur sans unité (nombre pur).",
-          remarque: "Puisque ρ_eau = 1 g/cm³, la valeur numérique de la densité est égale à celle de la masse volumique exprimée en g/cm³.",
-          exemples: [
-            "Densité de l'huile d'arachide : d = 0,92 / 1 = 0,92 (inférieure à 1).",
-            "Densité du granite : d = 2,70 / 1 = 2,70 (supérieure à 1)."
-          ]
-        },
-        {
-          titre: "III. Flottabilité et comparaison des densités dans la vie courante",
-          texte: "Un corps immergé dans un liquide flotte si sa densité est inférieure à celle du liquide (d < 1 pour l'eau). Si sa densité est supérieure à celle du liquide (d > 1), le corps coule.",
-          exemples: [
-            "Application maritime : les pirogues de pêcheurs en bois flottent sur l'océan à Saint-Louis et Kayar car le bois a une densité inférieure à celle de l'eau salée.",
-            "Séparation culinaire : lorsqu'on prépare le Ceebu Jën, l'huile d'arachide surnage toujours au-dessus du bouillon aqueux car sa densité (0,92) est plus faible que celle de l'eau."
-          ]
-        }
-      ],
-      exercices: [
-        {
-          titre: "Exercice 1 : Questions à réponses courtes et Vrai/Faux",
-          type: "vrai_faux",
-          enonce: "Répondre par Vrai ou Faux et justifier brièvement les affirmations suivantes :",
-          elements: [
-            "a) La densité d'un corps s'exprime obligatoirement en kg/m³.",
-            "b) Un solide de masse 250 g et de volume 100 cm³ flotte sur l'eau douce.",
-            "c) L'huile d'arachide surnage au-dessus de l'eau parce que sa masse volumique est plus faible que celle de l'eau."
-          ]
-        },
-        {
-          titre: "Exercice 2 : Application au marché de Kaolack",
-          type: "application",
-          enonce: "Un commerçant mesure la masse d'un bidon contenant 5 litres d'huile d'arachide brute. La masse nette de l'huile est trouvée égale à 4,6 kg.",
-          elements: [
-            "1. Calculer la masse volumique de cette huile en kg/L puis en g/cm³.",
-            "2. En déduire la densité de cette huile d'arachide par rapport à l'eau douce.",
-            "3. Si l'on verse accidentellement cette huile dans une bassine d'eau de pluie, observera-t-on un dépôt au fond ou une nappe en surface ? Justifier."
-          ]
-        }
-      ],
-      devoir_maison: {
-        titre: "Devoir de maison : Détermination de la masse volumique d'une roche du Lac Rose",
-        consignes: "Un élève de 3ème ramasse un morceau de roche près du Lac Rose. À la maison, à l'aide d'une balance de cuisine, il trouve une masse m = 162 g. Par déplacement d'eau dans un verre mesureur gradué, le niveau passe de 150 mL à 210 mL. 1) Déterminer le volume de la roche en cm³. 2) Calculer sa masse volumique en g/cm³. 3) Calculer sa densité par rapport à l'eau douce."
-      }
+      titre: titrePartie,
+      activite: pIdx === 0 && chapitre.activites_preparatoires_suggerees
+        ? `Activité préparatoire officielle : ${chapitre.activites_preparatoires_suggerees}`
+        : `Activité d'investigation : Réalisation guidée de l'expérience sur ${rawTheme.toLowerCase()} à l'aide du matériel didactique. Les élèves observent, notent les mesures et interprètent.`,
+      definition: `Définition / Retenons : Pour la notion "${rawTheme}", les élèves doivent retenir l'énoncé institutionnel conforme aux objectifs du programme (OS${pIdx + 1} : ${chapitre.objectifs[pIdx] || chapitre.objectifs[0]}).`,
+      texte: sousNotions.length > 0
+        ? `Étude détaillée des notions clés prescrites par le programme officiel : ${sousNotions.join(', ')}. Interprétation scientifique et formalisation mathématique avec les unités officielles du Système International.`
+        : `Étude approfondie de la notion de ${rawTheme} conformément aux exigences du programme FASTEF du cycle moyen sénégalais.`,
+      application: `Exemple résolu pas-à-pas : Application numérique directe de la règle sur ${rawTheme} avec démarche méthodologique complète et justification des unités.`,
+      remarque: `Remarque didactique : Respecter scrupuleusement les limites fixées par le programme sénégalais et veiller aux règles de sécurité en laboratoire.`,
+      exemples: [
+        `Exemple d'application dans la vie courante au Sénégal en lien avec ${rawTheme}.`,
+        `Situation-problème locale contextualisée (marché, atelier, environnement).`
+      ]
     };
-  } else {
-    // Maths
-    return {
-      prerequis: [
-        "Notion de droites parallèles et sécantes",
-        "Rapports de proportionnalité et fractions équivalentes",
-        "Utilisation de la règle graduée et de l'équerre"
-      ],
-      materiel: [
-        "Instruments de géométrie de tableau (grande règle, équerre, compas)",
-        "Cahier quadrillé et matériel individuel des élèves",
-        "Exemples de plans et schémas d'arpentage sénégalais"
-      ],
-      objectifs_specifiques: chapitre.objectifs.map((o, idx) => `OS${idx + 1} : ${o}`),
-      concepts_cles: [
-        "Configuration de Thalès",
-        "Rapports de proportionnalité des longueurs",
-        "Réciproque du théorème de Thalès",
-        "Parallélisme de droites"
-      ],
-      plan: [
-        "I. Énoncé et configuration du théorème de Thalès",
-        "II. Calcul de longueurs inconnues dans un triangle",
-        "III. Réciproque du théorème de Thalès et démonstration du parallélisme"
-      ],
-      sections: [
-        {
-          titre: "I. Configuration et énoncé du théorème de Thalès",
-          activite: "Activité 1 : Dans la cour du collège à Dakar, un poteau vertical et un bâton d'un mètre planté verticalement projettent leurs ombres respectives au sol sous les rayons parallèles du soleil.",
-          definition: "Soit un triangle ABC. Si M est un point de la droite (AB), N un point de la droite (AC), et si la droite (MN) est parallèle à la droite (BC), alors : AM / AB = AN / AC = MN / BC.",
-          remarque: "Les points A, M, B d'une part, et A, N, C d'autre part, doivent être alignés dans le même ordre.",
-          exemples: [
-            "Dans un triangle ABC où AB = 8 cm, AC = 10 cm, BC = 6 cm. Si M est sur [AB] avec AM = 2 cm et (MN) // (BC), alors AN = 2,5 cm et MN = 1,5 cm."
-          ]
-        },
-        {
-          titre: "II. Calcul pratique de distances inaccessibles",
-          texte: "Le théorème de Thalès est l'outil privilégié pour déterminer la hauteur d'un arbre, d'un minaret ou d'un lampadaire sans y grimper.",
-          exemples: [
-            "Hauteur d'un baobab à Kaolack : l'ombre du baobab mesure 18 mètres au sol alors qu'au même moment, un piquet vertical de 2 m projette une ombre de 3 m. La hauteur du baobab est h = 2 × 18 / 3 = 12 mètres."
-          ]
-        }
-      ],
-      exercices: [
-        {
-          titre: "Exercice 1 : Application directe du calcul de longueur",
-          type: "application",
-          enonce: "Sur la figure ci-contre, les droites (EF) et (BC) sont parallèles. On donne : AE = 3 cm, AB = 9 cm, AC = 12 cm et BC = 7,5 cm.",
-          elements: [
-            "1. Justifier l'application du théorème de Thalès.",
-            "2. Calculer la longueur AF.",
-            "3. Calculer la longueur EF."
-          ]
-        },
-        {
-          titre: "Exercice 2 : Démontrer un parallélisme",
-          type: "application",
-          enonce: "Dans un triangle PQR, on donne PQ = 6 cm, PR = 8 cm. Le point S est sur [PQ] tel que PS = 1,5 cm et le point T est sur [PR] tel que PT = 2 cm.",
-          elements: [
-            "1. Calculer séparément les rapports PS/PQ et PT/PR.",
-            "2. Conclure sur le parallélisme des droites (ST) et (QR)."
-          ]
-        }
-      ],
-      devoir_maison: {
-        titre: "Devoir à la maison : Le problème du géomètre à Thiès",
-        consignes: "Un géomètre veut mesurer la largeur d'une rivière sans la traverser. Il implante des piquets A, B, C, D et E en alignant les visées... Déterminer la largeur en justifiant par le théorème de Thalès."
-      }
-    };
-  }
+  });
+
+  // 3. Exercices d'évaluation basés sur les objectifs officiels
+  const exercicesGenerated = [
+    {
+      titre: `Exercice 1 : Contrôle des connaissances sur ${chapitre.titre_chapitre}`,
+      type: "vrai_faux" as const,
+      enonce: `Répondre par Vrai ou Faux en justifiant à partir des définitions du cours :`,
+      elements: chapitre.objectifs.slice(0, 3).map((obj, i) => `Affirmation ${i + 1} liée à l'objectif : "${obj}"`)
+    },
+    {
+      titre: `Exercice 2 : Application méthodique et calculs`,
+      type: "application" as const,
+      enonce: `Résoudre la situation-problème suivante en appliquant les formules et notions du cours :`,
+      elements: [
+        `1. Rappeler la définition et la formule fondamentale vue en classe.`,
+        `2. Effectuer l'application numérique avec les grandeurs et unités appropriées.`,
+        `3. Conclure sur la conformité du résultat dans le contexte donné.`
+      ]
+    }
+  ];
+
+  return {
+    prerequis: [
+      `Prérequis pour aborder ${chapitre.titre_chapitre} au collège`,
+      "Maîtrise des instruments de mesure et unités du Système International",
+      "Règles élémentaires de calcul et manipulation de laboratoire"
+    ],
+    materiel: chapitre.materiel_suggere && chapitre.materiel_suggere.length > 0
+      ? chapitre.materiel_suggere
+      : [
+          "Tableau noir, craie blanche et de couleur",
+          "Instruments de mesure et verrerie adaptés",
+          "Fiches d'activités individuelles"
+        ],
+    objectifs_specifiques: chapitre.objectifs.map((o, idx) => `OS${idx + 1} : ${o}`),
+    concepts_cles: chapitre.contenus.slice(0, 5),
+    plan: planGenerated,
+    sections: sectionsGenerated,
+    exercices: exercicesGenerated,
+    devoir_maison: {
+      titre: `Devoir à la maison : Recherche et consolidation sur ${chapitre.titre_chapitre}`,
+      consignes: `Rédiger une synthèse personnelle sur les notions de ${chapitre.titre_chapitre} et résoudre les exercices d'application dans son cahier de devoirs.`
+    }
+  };
 }
