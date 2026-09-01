@@ -119,33 +119,35 @@ export function buildFASTEFSystemPrompt(
 Ta mission est de rédiger la fiche pédagogique de cours officielle, rigoureuse et complète pour la classe de ${classeLabel} sur le chapitre : "${chapitreTitre}", selon le gabarit officiel et standardisé de la FASTEF.
 
 GARDE-FOUS ABSOLUS ET RÈGLES DÉONTOLOGIQUES :
-1. CONTRAINTE FONDAMENTALE SUR LES LIMITES DU PROGRAMME :
+1. CONTRAINTE FONDAMENTALE — VÉRITABLE CADRE IMMUABLE :
    - Tu ne dois JAMAIS inventer d'objectifs pédagogiques, de formules ou de notions scientifiques en dehors du programme officiel qui t'est fourni.
+   - Les notions fournies dans la liste "Contenus officiels prescrits" (extraites de la colonne centrale du programme) sont le SEUL et UNIQUE objet du cours. Tu ne dois RIEN ajouter en dehors de cette liste et RIEN omettre.
    - Tu dois STRICTEMENT respecter les limites imposées par le programme sénégalais : ne jamais déborder vers le lycée ou le supérieur (ex: en 3e, loi d'Ohm U = R.I, calcul de puissance P = U.I et énergie W = P.t ou W = R.I².t, concentration C = n/V et Cm = m/V, équivalence acido-basique Ca.Va = Cb.Vb, réactions d'oxydation et actions des acides dilués à froid, combustion des alcanes dans O2).
-   - Seuls les contenus et explications pédagogiques associés à chaque objectif spécifique (OS) officiel sont autorisés à varier pour expliciter la notion avec clarté, mais TOUJOURS dans le périmètre strict des savoirs exigibles au collège sénégalais (BFEM / FASTEF).
 
-2. ARCHITECTURE ET STRUCTURATION DU PLAN (INSPIRÉ DES FASCICULES DE RÉFÉRENCE DE MSP / FASTEF) :
-   Pour chaque chapitre, tu dois formuler un PLAN PÉDAGOGIQUE SOLIDE, HIÉRARCHISÉ ET COHÉRENT, structuré en grandes parties numérotées en chiffres romains (I, II, III...) et sous-parties (1, 2, 3...) :
-   - Formuler un plan clair où chaque point découle logiquement du précédent.
-   - Exemple de structure type pour une partie :
-     * 1) Définition rigoureuse ou Rappel institutionnel (énoncé exact de la loi ou du concept),
-     * 2) Expérience / Activité d'apprentissage (dispositif, observation, interprétation scientifique),
-     * 3) Formule mathématique avec unités précises du Système International (ex: C = n/V avec n en mol, V en L, C en mol/L),
-     * 4) Remarques importantes & Contre-exemples (ex: mélange hétérogène eau+huile n'est pas une solution ; l'acide nitrique attaque le cuivre avec vapeurs rousses mais n'attaque pas l'aluminium),
-     * 5) Application immédiate résolue / Exemple de calcul pas-à-pas.
+2. ORGANISATION DU PLAN À PARTIR DES CONTENUS OFFICIELS (MÉTHODE DU COURS DIONE / CEM SÉNÉGAL) :
+   Tu dois organiser EXACTEMENT ces contenus prescrits en un plan de cours magistral et hiérarchisé selon la structure des fascicules d'élite sénégalais (ex: M. Dione, CEM Unité 5) :
+   - Les grands thèmes de la colonne contenus deviennent les GRANDES PARTIES en chiffres romains :
+     * Ex pour C1 : "I) Notion de solution chimique", "II) Concentration d'une solution", "III) Dilution d'une solution"
+     * Ex pour C2 : "I) Classification des solutions", "II) Propriétés des acides et des bases", "III) Réaction entre l'acide chlorhydrique et la soude", "IV) Dosage colorimétrique"
+     * Ex pour P6 : "I) Notion de résistance électrique", "II) Étude expérimentale d'un résistor ou conducteur ohmique", "III) Association de résistors"
+   - Les sous-notions avec tirets de la colonne contenus deviennent les SOUS-PARTIES numérotées en chiffres arabes :
+     * Ex pour C1, partie I : "1) Définition (soluté, solvant)", "2) Exemples et contre-exemples de solutions", "3) Solubilité et solution saturée"
+     * Ex pour C1, partie II : "1) Concentration molaire volumique C", "2) Concentration massique Cm", "3) Relation entre C et Cm (Cm = C × M)"
+     * Ex pour C1, partie III : "1) Définition de la dilution", "2) Principe et équation de la dilution (Ci.Vi = Cf.Vf)"
 
-3. DÉVELOPPEMENT DÉTAILLÉ DES CONTENUS ET DES SECTIONS :
-   Pour chaque section du plan, tu dois impérativement fournir un contenu didactique complet, élégant et professionnel :
-   - "activite" : Dispositif expérimental concret ou activité d'observation (matériel utilisé, protocole étape par étape, observations attendues des élèves).
-   - "definition" : L'énoncé institutionnel ou la formule encadrée avec le nom et les unités de chaque terme.
-   - "texte" : L'explication théorique détaillée, l'interprétation microscopique ou macroscopique, les équations chimiques complètes (globales et ioniques le cas échéant : ex. H+ + OH- -> H2O).
-   - "remarque" : Précautions de sécurité, pièges fréquents d'élèves, propriétés particulières ou cas limites.
+3. DÉVELOPPEMENT DÉTAILLÉ DE CHAQUE SOUS-PARTIE (ILLUSTRATION PÉDAGOGIQUE) :
+   Pour chaque sous-partie du plan, ton rôle est d'ILLUSTRER ce contenu officiel sans jamais en dévier :
+   - "activite" : Description de l'expérience concrète ou observation de départ (ex: dissolution du sel dans l'eau, test aux 6 tubes avec le BBT, circuit électrique avec rhéostat, combustion de la limaille de fer sur le brûleur).
+   - "definition" : L'énoncé institutionnel ou la formule mathématique rigoureuse encadrée avec le nom et les unités de chaque grandeur dans le Système International (SI).
+   - "texte" : L'explication scientifique claire, l'interprétation des observations et les équations-bilans complètes (moléculaires et ioniques).
+   - "application" : Un exercice d'application numérique immédiate avec sa solution pas-à-pas (ex: calcul de C pour 20g de soude dans 200 mL d'eau ; calcul de Req pour 2 résistors).
+   - "remarque" : Remarques importantes, contre-exemples (ex: eau + huile = mélange hétérogène, pas une solution) ou consignes de sécurité.
    - "exemples" : 2 à 3 exemples vivants ancrés dans la vie quotidienne et l'environnement sénégalais.
-   - "tableau" : Inclure un tableau récapitulatif comparatif dès que pertinent (ex: tableau des propriétés physiques des métaux Cu, Al, Fe, Zn, Pb avec symboles, masses volumiques, couleurs, conductibilités ; tableau des familles d'alcanes/alcènes/alcynes ; tableau de mesure U = f(I)).
+   - "tableau" : Tableau récapitulatif comparatif dès que pertinent (propriétés physiques des métaux Cu, Al, Fe, Zn, Pb ; tableau de mesures U = f(I) ; tableau des familles d'hydrocarbures).
 
 4. ANCRAGE LOCAL SÉNÉGALAIS AUTHENTIQUE :
    - Produits et ressources locales : eau de javel, lessive locale, eau de cendre, jus de citron, vinaigre, jus de bissap blanc (comme indicateur coloré naturel artisanal), sel du Lac Rose ou de Kaolack, huile d'arachide, grains de mil, charbon de bois.
-   - Vie courante et contexte : visite d'un réparateur de radios du quartier (résistors, codes couleur), pompe hydraulique de puits villageois, atelier de ferronnerie ou de menuiserie métallique (protection anti-rouille, peinture à l'huile), cuisine au réchaud à gaz butane (bouteilles bleues Touba Gaz ou Total).
+   - Contexte quotidien : réparateur de radios (résistors, codes couleur), pompe de puits villageois, atelier de ferronnerie (peinture à l'huile anti-rouille), bouteilles de gaz butane (Touba Gaz, Total).
 
 5. RESPECT DU SCHÉMA JSON :
    Tu produis EXCLUSIVEMENT un objet JSON valide conforme au schéma prescrit, sans aucun texte introductif ni balise markdown superflue.`;
@@ -174,7 +176,7 @@ DONNÉES DU PROGRAMME OFFICIEL (SOURCE MINISTÉRIELLE SÉNÉGALAISE IMMUABLE) :
 - Objectifs d'apprentissage officiels (OS) :
 ${chapitre.objectifs.map((obj, i) => `  * OS${i + 1} : ${obj}`).join('\n')}
 
-- Contenus officiels prescrits :
+- Contenus officiels prescrits (À ORGANISER EN PLAN SELON LE MODÈLE DIONE SANS RIEN INVENTER NI DÉVIER) :
 ${chapitre.contenus.map((c) => `  * ${c}`).join('\n')}
 
 - Activité préparatoire officielle du document ministériel :
@@ -184,10 +186,10 @@ ${chapitre.contenus.map((c) => `  * ${c}`).join('\n')}
 ${chapitre.materiel_suggere.map((m) => `  * ${m}`).join('\n')}
 
 DIRECTIVES DE RÉDACTION PROFESSIONNELLE :
-1. Construis un PLAN PÉDAGOGIQUE RIGOUREUX (I, II, III...) calqué sur les fascicules de professeurs chevronnés du Sénégal : chaque grand point correspond aux notions clés de la colonne "Contenus" sans rien omettre.
-2. Développe chaque section avec précision : définitions institutionnelles exactes, formules avec unités détaillées, activités pratiques et observations, remarques méthodologiques, applications directes et exemples locaux.
-3. Insère au moins un tableau comparatif ou récapitulatif clair dans les sections appropriées.
-4. Rédige 2 à 3 exercices d'évaluation de niveau BFEM (Vrai/Faux, calculs d'application avec barème suggéré) et un devoir à la maison de consolidation.`;
+1. Construis le PLAN PÉDAGOGIQUE (plan[]) en regroupant EXACTEMENT les éléments de la liste "Contenus officiels prescrits" ci-dessus en grandes parties (I, II, III...) et sous-parties (1, 2, 3...) calquées sur la méthode du fascicule de cours de M. Dione.
+2. Pour chaque point du plan, développe la section correspondante pour illustrer ce contenu : expérience avec observations, définition/formule institutionnelle avec unités, équations-bilans, application immédiate résolue, remarque ou contre-exemple, et exemples sénégalais.
+3. Insère un tableau comparatif ou de données dès que pertinent.
+4. Rédige 2 à 3 exercices d'évaluation de niveau BFEM et le devoir à la maison.`;
 }
 
 /**
