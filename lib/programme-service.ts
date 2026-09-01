@@ -21,7 +21,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Phénomènes physiques, phénomènes chimiques",
       "États de la matière ; changements d'états"
     ],
-    activites_preparatoires_suggerees: "Observation et distinction de phénomènes familiers : dissolution du sucre ou du sel, mouvements, changements d'états de l'eau, effet du jus de citron ou vinaigre sur le calcaire. Recherche documentaire sur l'apport de la chimie et de la physique (agriculture, santé, environnement).",
+    activites_preparatoires_suggerees: "Thème : recherche documentaire sur les sciences, sciences expérimentales, physique et chimie (leur domaine d'étude, leurs apports, leur intérêt). Observation de phénomènes physiques et chimiques du quotidien : mouvements, changements d'états, effets du courant électrique, dissolution du sucre ou sel, effet du jus de citron ou vinaigre sur le calcaire.",
     materiel_suggere: [
       "Verrerie usuelle (béchers, tubes à essais)",
       "Échantillons d'eau, sel, sucre, craie/calcaire",
@@ -48,7 +48,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Chiffres significatifs",
       "Notation scientifique"
     ],
-    activites_preparatoires_suggerees: "Mesures effectives en classe avec des instruments familiers (règle, verrerie graduée, chronomètre, balance) ; analyse critique des erreurs de lecture et conversion des unités en puissances de dix.",
+    activites_preparatoires_suggerees: "Recherchez les appareils de mesure utilisés fréquemment à domicile ou dans votre environnement immédiat et essayez de les utiliser en prenant les mesures de sécurité nécessaires (au besoin demander conseil). Amenez un certain nombre en classe (règle, verrerie graduée, chronomètre, montre, balance).",
     materiel_suggere: [
       "Règles graduées et mètre ruban",
       "Verrerie graduée (éprouvettes)",
@@ -76,7 +76,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Masse volumique : relation m = ρ × V, unités (kg/m³, g/cm³)",
       "Densité : d = ρ / ρ_eau, comparaison des densités et flottabilité"
     ],
-    activites_preparatoires_suggerees: "Pesée rationnelle avec masses marquées et balance de Roberval ou électronique. Détermination expérimentale de la masse et du volume d'eau, d'huile locale et de solides pour calculer la masse volumique et vérifier la flottabilité.",
+    activites_preparatoires_suggerees: "Thème : Faire des recherches sur les balances : types de balances, caractéristiques et utilisations courantes. Définir la masse comme grandeur caractéristique d'un corps que l'on détermine à l'aide d'une balance. Mesure de masses et de volumes de liquides et solides usuels.",
     materiel_suggere: [
       "Balances (Roberval avec boîte de masses marquées ou électronique)",
       "Éprouvettes graduées de 100 mL",
@@ -101,7 +101,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Mesures au dynamomètre et représentation vectorielle",
       "Relation entre poids et masse : intensité de la pesanteur g et son unité (N/kg)"
     ],
-    activites_preparatoires_suggerees: "Mise en évidence du poids par la chute des corps et suspension à un dynamomètre. Détermination du centre de gravité d'une plaque mince. Tracé de la courbe P en fonction de m pour prouver la constance du rapport P/m.",
+    activites_preparatoires_suggerees: "1. Masse ou poids ? Relevez sur différents objets de votre entourage les indications relatives à ces deux grandeurs. Quelles remarques peut-on faire ? 2. Masse et poids représentent-ils la même grandeur physique ? Si non, quelle(s) différence(s) faire entre ces deux grandeurs ?",
     materiel_suggere: [
       "Dynamomètres de calibres variés (1 N, 2 N, 5 N)",
       "Masses marquées étalonnées (50 g, 100 g, 200 g)",
@@ -140,7 +140,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Tension électrique : définition, unité (Volt V), voltmètre, lois des tensions",
       "Protection et sécurité électrique (court-circuit, fusibles)"
     ],
-    activites_preparatoires_suggerees: "Montages pratiques sur platine : allumage d'une lampe, test de matériaux conducteurs et isolants, insertion de l'ampèremètre en série et du voltmètre en dérivation, vérification des lois d'additivité et d'unicité.",
+    activites_preparatoires_suggerees: "1. Recherchez dans votre environnement divers appareils et composants électriques, relevez les indications marquées sur ces appareils. Quelles grandeurs physiques évoquent ces indications ? 2. Pouvez-vous faire fonctionner ces composants ? (sécurité). 3. Court-circuit, courant continu, courant alternatif, fusible, disjoncteur, prise de terre : rechercher la signification et le rôle.",
     materiel_suggere: [
       "Piles plates 4,5 V ou alimentations basse tension",
       "Lampes sur supports et interrupteurs",
@@ -164,7 +164,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Sources apparentes (ou secondaires) de lumière : Lune, objets diffusants éclairés",
       "Récepteurs de lumière : l'œil humain, cellules photovoltaïques, papier photographique"
     ],
-    activites_preparatoires_suggerees: "Observation d'objets dans l'obscurité totale versus éclairés par une lampe torche ; déduction des conditions de visibilité d'un objet et mise en action d'un récepteur (panneau solaire miniature).",
+    activites_preparatoires_suggerees: "1. Considérez les objets qui meublent le salon de votre maison (ou votre chambre). Les classer en objets qui produisent la lumière et en objets qui reçoivent la lumière. 2. À quelle(s) condition(s) ces objets vous sont-ils visibles ?",
     materiel_suggere: [
       "Lampe torche ou bougie",
       "Écrans blancs et cartons noirs opaques",
@@ -189,7 +189,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Ombres et pénombres : ombre propre et ombre portée, pénombre propre et pénombre portée",
       "Applications : visée, chambre noire, éclipses de Soleil et de Lune"
     ],
-    activites_preparatoires_suggerees: "Expérience des cartons perforés alignés pour prouver le trajet rectiligne ; projection d'ombres d'une sphère sur un écran (zones d'ombre et de pénombre) ; fabrication d'une chambre noire artisanale.",
+    activites_preparatoires_suggerees: "Chercher une boîte opaque. Découper l'une des faces et la remplacer par un verre dépoli de même dimension (ou du papier huilé). Percer une très petite ouverture sur la face opposée au verre dépoli. Orienter l'ouverture vers un objet tel qu'une bougie allumée. Décrire ce que l'on observe sur le verre dépoli. Interpréter.",
     materiel_suggere: [
       "Cartons perforés sur supports d'alignement",
       "Source de lumière ponctuelle et source étendue",
@@ -217,7 +217,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Objet réel et image virtuelle symétrique",
       "Réfraction de la lumière : rayon réfracté, angle réfracté, applications courantes"
     ],
-    activites_preparatoires_suggerees: "Mesure des angles sur disque optique gradué avec miroir plan ; expérience des deux bougies pour situer l'image virtuelle symétrique ; observation de la brisure optique d'un bâton plongé dans l'eau.",
+    activites_preparatoires_suggerees: "Thème : Recherche documentaire sur la formation des images. Mise en évidence de la réflexion diffuse, puis de la réflexion spéculaire (par un miroir plan). Expérience des deux bougies pour situer l'image virtuelle.",
     materiel_suggere: [
       "Miroir plan et vitre transparente",
       "Disque d'optique gradué (disque de Hartl)",
@@ -251,7 +251,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Divers exemples de mélanges et de méthodes de séparation (air, fer-soufre, liquides miscibles/non miscibles, liquide-gaz)",
       "Distinction entre mélange et corps pur"
     ],
-    activites_preparatoires_suggerees: "Observation d'eaux naturelles locales. Réalisation d'expériences de décantation et filtration d'eau boueuse, puis distillation de l'eau. Séparation magnétique du mélange fer-soufre à l'aimant. Électrolyse et synthèse de l'eau.",
+    activites_preparatoires_suggerees: "Faire des recherches sur : - Le traitement de l'eau. - Le cycle de l'eau. Définir la notion de mélange à partir d'une eau boueuse et salée. Réaliser la décantation, la filtration puis la distillation du filtrat pour définir un corps pur.",
     materiel_suggere: [
       "Entonnoirs, papier filtre, béchers, ampoules à décanter",
       "Dispositif de distillation (ballon, réfrigérant)",
@@ -280,7 +280,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Notation chimique : symbole des éléments, formule d'un corps pur",
       "Modèle atomique et moléculaire (boules compactes et éclatées)"
     ],
-    activites_preparatoires_suggerees: "Mise en évidence expérimentale de la discontinuité par dilution poussée d'un colorant (permanganate de potassium ou bleu de méthylène). Écriture de formules et manipulation de boîtes de modèles moléculaires (H2O, O2, N2, CO2, CH4).",
+    activites_preparatoires_suggerees: "Faire des recherches sur l'historique de l'atome : sens étymologique, découverte des particules subatomiques, modèles d'atomes. Le caractère discontinu de la matière sera dégagé à partir d'observations de la vie courante : exhalaison d'odeur, dilution d'un colorant.",
     materiel_suggere: [
       "Boîtes de modèles moléculaires didactiques",
       "Pâte à modeler colorée",
@@ -308,7 +308,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Volume molaire : loi d'Avogadro-Ampère, volume molaire Vm (en L/mol)",
       "Densité d'un gaz par rapport à l'air : formule d = M / 29"
     ],
-    activites_preparatoires_suggerees: "Utilisation du tableau périodique pour relever les masses atomiques. Calcul de masses molaires de corps purs (H2O, CO2, NaCl, C4H10). Application des relations n = m/M, n = V/Vm et d = M/29 à travers des exercices concrets.",
+    activites_preparatoires_suggerees: "1. Pouvez-vous compter le nombre de grains de mil d'une récolte ? Expliquez comment on estime cette récolte. 2. Combien d'atomes de fer y a-t-il dans un échantillon d'un mètre cube sachant que la masse volumique du fer est de 7,8 g/cm³ et que la masse d'un atome de fer est de 8,9 × 10⁻²³ g ?",
     materiel_suggere: [
       "Tableau périodique des éléments avec masses atomiques",
       "Balance de précision pour peser une mole de substances usuelles",
@@ -336,7 +336,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Équation-bilan d'une réaction chimique : écriture, équilibrage par coefficients stœchiométriques, interprétation",
       "Application : résolution de problèmes de stœchiométrie chimique"
     ],
-    activites_preparatoires_suggerees: "Réalisation d'expériences témoins : combustion du carbone dans le dioxygène avec test à l'eau de chaux ; réaction fer-soufre ; action de l'acide chlorhydrique sur le calcaire. Écriture et équilibrage pas-à-pas des équations-bilans.",
+    activites_preparatoires_suggerees: "Thèmes (exploitation sous forme d'exposés) : 1. Pollution liée aux transformations chimiques. 2. Protection de l'environnement et mesures de sécurité à l'encontre de la production de substances nocives. Combustions complètes et incomplètes, dégagement de monoxyde de carbone.",
     materiel_suggere: [
       "Flacons de dioxygène transparents",
       "Charbon de bois, soufre en poudre, limaille de fer",
@@ -369,7 +369,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Objet réel, image réelle, image virtuelle, image droite, image renversée, grandissement",
       "Applications : anomalies de la vision et correction, loupe, objectif photographique, projecteur de diapositives"
     ],
-    activites_preparatoires_suggerees: "Recherche sur l'œil, les anomalies visuelles et les verres correcteurs. Manipulation d'un kit ou banc d'optique : mise en évidence du foyer d'une lentille convergente, détermination expérimentale de la distance focale f et construction graphique de l'image A'B'.",
+    activites_preparatoires_suggerees: "Faire des recherches sur : 1. L'œil, anomalies, verres correcteurs. 2. La loupe, objectif photographique, le microscope. Partir d'objets familiers tels que les verres correcteurs, la loupe, les jumelles... pour aborder la leçon.",
     materiel_suggere: [
       "Banc d'optique ou kit d'optique didactique",
       "Lentilles convergentes (+2 δ, +5 δ, +10 δ) et divergentes",
@@ -395,7 +395,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Recomposition de la lumière blanche",
       "Applications et explication de l'arc-en-ciel"
     ],
-    activites_preparatoires_suggerees: "Observation de la dispersion de la lumière blanche à travers un prisme en verre ou un récipient d'eau incliné. Observation de l'ordre spectral. Expérience de recomposition des couleurs par rotation rapide du disque de Newton.",
+    activites_preparatoires_suggerees: "Faire des recherches sur les thèmes : 1. Les couleurs. 2. L'arc-en-ciel. Au moyen d'objets divers (prisme, verre d'eau légèrement incliné, bulles de savon...) faire observer le phénomène de dispersion de la lumière blanche en plusieurs couleurs et noter l'ordre de dispersion.",
     materiel_suggere: [
       "Prisme optique en verre",
       "Source de lumière blanche à fente fine collimatée",
@@ -425,7 +425,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Équilibre d'un solide soumis à l'action de deux forces : notion d'équilibre, conditions nécessaires d'équilibre, forces directement opposées (F1 + F2 = 0)",
       "Principe des actions réciproques"
     ],
-    activites_preparatoires_suggerees: "Mesure de forces au dynamomètre. Représentation vectorielle à l'échelle. Réalisation expérimentale de l'équilibre d'un solide soumis à deux forces directement opposées (anneau léger tiré par deux dynamomètres, corps suspendu).",
+    activites_preparatoires_suggerees: "1. Recherchez, dans votre environnement, des corps en interaction. Précisez s'il s'agit d'interaction à distance ou d'interaction de contact. 2. Parmi ces corps, lesquels sont en équilibre ? 3. Dans quelle condition un corps peut-il être en équilibre ?",
     materiel_suggere: [
       "Dynamomètres étalonnés",
       "Anneaux légers, potences et fils de fixation",
@@ -450,7 +450,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Puissance mécanique : unité du SI : le watt (W)",
       "Formules : W = F × L et P = W / t (et P = F × V)"
     ],
-    activites_preparatoires_suggerees: "Enquête sur les situations où l'on parle de travail dans le langage courant. Calcul du travail d'une force constante colinéaire au déplacement, calcul du travail du poids d'un corps soulevé, et calcul de puissances développées dans des situations familières.",
+    activites_preparatoires_suggerees: "Faire une enquête pour trouver des situations où on parle de travail dans le langage courant. Peut-on caractériser le travail par des grandeurs physiques déjà étudiées dans le cours de physique ? Lesquelles ?",
     materiel_suggere: [
       "Chronomètre",
       "Mètre ruban",
@@ -478,7 +478,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Le courant électrique : porteurs de charges, conducteur électrolytique, sens conventionnel du courant électrique, nature du courant électrique",
       "Intensité du courant électrique : relations I = q / t et q = n × e"
     ],
-    activites_preparatoires_suggerees: "Expériences d'électrisation par frottement de bâtons d'ébonite, verre ou plastique sur chiffon de laine. Interaction entre corps électrisés (attraction, répulsion). Preuve expérimentale de la conduction dans les solutions aqueuses électrolytiques.",
+    activites_preparatoires_suggerees: "Recherchez quelques objets de votre environnement. Pouvez-vous les classer en conducteurs et isolants électriques ? Frottez divers objets pris parmi ces deux catégories, approchez-les de petits bouts de papier. Notez vos observations.",
     materiel_suggere: [
       "Bâtons d'ébonite, de verre, règles en plastique",
       "Tissus de laine et soie",
@@ -506,7 +506,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Résistor équivalent : associations en série (Req = R1 + R2) et en dérivation (1/Req = 1/R1 + 1/R2)",
       "Rhéostat et potentiomètre"
     ],
-    activites_preparatoires_suggerees: "Étude expérimentale du résistor : relevé point par point des couples (I, U) et tracé de la caractéristique linéaire U = f(I). Vérification expérimentale des lois d'association des résistors en série et en dérivation.",
+    activites_preparatoires_suggerees: "Visite chez le réparateur de radios : 1. Découvrir différents conducteurs ohmiques (types, formes). 2. Relever les indications marquées sur quelques conducteurs ohmiques. Que signifient ces indications ? Quelle grandeur physique est mesurée en Ohm ?",
     materiel_suggere: [
       "Résistors de valeurs variées (100 Ω, 220 Ω, 470 Ω)",
       "Alimentation réglable basse tension",
@@ -534,7 +534,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Transformation d'énergie : exemples, rendement d'une transformation d'énergie",
       "Énergie et puissance électriques : énergie électrique W = U × I × t, puissance électrique P = U × I, effet Joule, loi de Joule : W = R × I² × t"
     ],
-    activites_preparatoires_suggerees: "Mise en évidence expérimentale des transformations d'énergie (électrique en mécanique par un moteur, électrique en thermique par une résistance chauffante). Calculs de consommation sur une facture Senelec et calcul de rendement.",
+    activites_preparatoires_suggerees: "1. Visite d'une centrale hydroélectrique ou thermique. 2. Recherche sur les sources d'énergies renouvelables (solaire, éolien au Sénégal). Exemples familiers de systèmes susceptibles de fournir ou de transformer de l'énergie.",
     materiel_suggere: [
       "Petit moteur électrique avec masse suspendue",
       "Résistance chauffante immergée ou thermoplongeur didactique",
@@ -566,7 +566,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Relation : Cm = C × M",
       "Applications : dilutions et préparation de solutions"
     ],
-    activites_preparatoires_suggerees: "Étude expérimentale de la solubilité du sel dans l'eau en fonction de la température. Préparation d'une solution par dissolution d'une masse pesée de soluté et par dilution avec choix de matériel adapté (pipette, fiole jaugée).",
+    activites_preparatoires_suggerees: "Considérer des mélanges liquides de votre environnement. Les classer en mélanges homogènes et en mélanges hétérogènes. Pouvez-vous séparer les constituants des mélanges homogènes ? Si oui, comment ? Réaliser des solutions d'eau salée et d'eau sucrée à saturation.",
     materiel_suggere: [
       "Fioles jaugées de 50 mL et 100 mL",
       "Pipettes jaugées et pipettes graduées avec poires",
@@ -594,7 +594,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Réaction entre l'acide chlorhydrique et la soude : réaction exothermique, neutralisation, équation-bilan (H+ + HO- → H2O)",
       "Dosage colorimétrique : équivalence acido-basique, relation CA × VA = CB × VB"
     ],
-    activites_preparatoires_suggerees: "Classification de solutions courantes au BBT et papier pH. Réalisation de la neutralisation acidobasique avec suivi thermométrique et changement de teinte de l'indicateur. Dosage colorimétrique guidé.",
+    activites_preparatoires_suggerees: "Revenir sur les activités préparatoires du chapitre précédent. Prélever environ 2 mL de chacun des liquides homogènes obtenus et ajouter quelques gouttes de jus de « bissap blanc » dilué ou BBT. Noter les observations et changements de teintes selon l'acidité ou basicité.",
     materiel_suggere: [
       "Burette graduée sur support",
       "Béchers et agitateurs magnétiques ou manuels",
@@ -622,7 +622,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Propriétés chimiques : oxydation à froid (formation de rouille sur le fer, alumine), oxydation à chaud",
       "Action des acides dilués à froid sur les métaux : acide chlorhydrique, acide sulfurique, dégagement de H2 et formation d'ions métalliques"
     ],
-    activites_preparatoires_suggerees: "Observation d'échantillons métalliques neufs et corrodés. Réactions à chaud avec le brûleur. Attaque à froid de clous en fer, grenailles de zinc et tournures de cuivre par l'acide chlorhydrique avec test d'identification du gaz H2 à la flamme.",
+    activites_preparatoires_suggerees: "1. Quels sont les métaux que vous connaissez ? 2. Où trouve-t-on ces métaux ? À quelles fins les emploie-t-on ? 3. Citez quelques propriétés caractéristiques de ces métaux (fer, cuivre, aluminium, zinc, plomb). Observer leur altération à l'air libre et à l'humidité.",
     materiel_suggere: [
       "Échantillons de fer, cuivre, zinc, aluminium, plomb",
       "Tubes à essais et pinces en bois",
@@ -649,7 +649,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Combustion d'hydrocarbures dans le dioxygène : combustion complète, combustion incomplète",
       "Applications industrielles des hydrocarbures, hydrocarbures et environnement"
     ],
-    activites_preparatoires_suggerees: "Observation et réglage de la flamme d'un brûleur ou réchaud à gaz butane (flamme bleue de combustion complète vs flamme jaune de combustion incomplète). Caractérisation de l'eau et du CO2 formés. Sensibilisation aux consignes de sécurité des bouteilles de gaz.",
+    activites_preparatoires_suggerees: "Thème : Recherche documentaire. 1. Chimie des composés organiques et médicaments. 2. Pétrole, gaz naturel, matières plastiques. Expliquer brièvement la formation du gaz naturel et du pétrole, et les précautions d'emploi des bouteilles de gaz butane domestique.",
     materiel_suggere: [
       "Brûleur à gaz avec virole réglable ou réchaud à gaz butane",
       "Bécher propre pour dépôt de buée",
@@ -709,7 +709,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
   },
 ];
 
-const LOCAL_STORAGE_KEY = 'fastef_programme_chapitres_v3';
+const LOCAL_STORAGE_KEY = 'fastef_programme_chapitres_v4';
 
 export class ProgrammeService {
   /**
