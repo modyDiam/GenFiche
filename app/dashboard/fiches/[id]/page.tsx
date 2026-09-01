@@ -172,6 +172,53 @@ function FicheDetailContent() {
   };
 
   const [isExportingDocx, setIsExportingDocx] = useState(false);
+  const [targetSectionToRegenerate, setTargetSectionToRegenerate] = useState<{
+    type: 'exercices' | 'devoir_maison' | 'section';
+    index?: number;
+    label: string;
+  } | null>(null);
+  const [isRegeneratingSection, setIsRegeneratingSection] = useState(false);
+  const [consigneCustom, setConsigneCustom] = useState('');
+
+  const handleRegenerateSection = async () => {
+    if (!targetSectionToRegenerate || !contenuGenere || !chapitre) return;
+    setIsRegeneratingSection(true);
+
+    try {
+      const response = await fetch('/api/regenerate-section', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ficheId,
+          sectionType: targetSectionToRegenerate.type,
+          sectionIndex: targetSectionToRegenerate.index ?? 0,
+          consigne: consigneCustom,
+          contenuActuel: contenuGenere,
+          chapitre,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Erreur lors de la régénération.');
+      }
+
+      setContenuGenere(data.contenu_mis_a_jour);
+      setIsRelue(false); // Obligation déontologique : relecture requise après régénération partielle
+      setTargetSectionToRegenerate(null);
+      setConsigneCustom('');
+      setGenerationInfo(data.message);
+
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem(`fiche_contenu_${ficheId}`, JSON.stringify(data.contenu_mis_a_jour));
+      }
+    } catch (err: any) {
+      console.error('Erreur régénération partielle:', err);
+      alert(err.message || 'Impossible de régénérer cette section.');
+    } finally {
+      setIsRegeneratingSection(false);
+    }
+  };
 
   const handleDownloadDocx = async () => {
     if (!chapitre || !contenuGenere) return;
@@ -613,7 +660,23 @@ function FicheDetailContent() {
 
                 {contenuGenere.sections.map((sec, idx) => (
                   <div key={idx} className="border border-slate-200 rounded-xl p-5 space-y-3">
-                    <h4 className="font-bold text-[#0F2C59] text-sm">{sec.titre}</h4>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-2">
+                      <h4 className="font-bold text-[#0F2C59] text-sm">{sec.titre}</h4>
+                      <button
+                        onClick={() =>
+                          setTargetSectionToRegenerate({
+                            type: 'section',
+                            index: idx,
+                            label: sec.titre,
+                          })
+                        }
+                        className="inline-flex items-center gap-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-2.5 py-1 rounded-lg transition-colors border border-slate-200 shrink-0"
+                        title="Régénérer uniquement cette section"
+                      >
+                        <RefreshCw className="w-3 h-3 text-[#0F2C59]" />
+                        <span>Régénérer cette section</span>
+                      </button>
+                    </div>
 
                     {sec.activite && (
                       <div className="fastef-encadre-activite text-xs">
@@ -678,9 +741,24 @@ function FicheDetailContent() {
 
               {/* Évaluation */}
               <div className="space-y-3">
-                <h3 className="font-bold text-slate-900 text-sm border-b border-slate-200 pb-2">
-                  5. Évaluation formative (Exercices)
-                </h3>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                  <h3 className="font-bold text-slate-900 text-sm">
+                    5. Évaluation formative (Exercices)
+                  </h3>
+                  <button
+                    onClick={() =>
+                      setTargetSectionToRegenerate({
+                        type: 'exercices',
+                        label: 'Exercices d\'évaluation',
+                      })
+                    }
+                    className="inline-flex items-center gap-1.5 text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1 rounded-lg transition-colors border border-amber-300 shrink-0"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5 text-amber-700" />
+                    <span>Régénérer les exercices (ex: niveau plus difficile)</span>
+                  </button>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   {contenuGenere.exercices.map((exo, i) => (
                     <div key={i} className="border border-slate-200 bg-slate-50 p-4 rounded-xl space-y-2">
@@ -705,15 +783,118 @@ function FicheDetailContent() {
 
               {/* Devoir à la maison */}
               {contenuGenere.devoir_maison && (
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-1">
-                  <strong className="text-[#0F2C59] block font-bold">
-                    6. {contenuGenere.devoir_maison.titre || 'Devoir à la maison'} :
-                  </strong>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs space-y-2">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                    <strong className="text-[#0F2C59] block font-bold">
+                      6. {contenuGenere.devoir_maison.titre || 'Devoir à la maison'} :
+                    </strong>
+                    <button
+                      onClick={() =>
+                        setTargetSectionToRegenerate({
+                          type: 'devoir_maison',
+                          label: 'Devoir à la maison',
+                        })
+                      }
+                      className="inline-flex items-center gap-1 text-[11px] bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold px-2.5 py-0.5 rounded transition-colors"
+                    >
+                      <RefreshCw className="w-3 h-3" />
+                      <span>Régénérer le devoir</span>
+                    </button>
+                  </div>
                   <p className="text-slate-700 leading-relaxed">
                     {contenuGenere.devoir_maison.consignes}
                   </p>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Modal de régénération partielle par section (Phase 7) */}
+          {targetSectionToRegenerate && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                      <RefreshCw className="w-4 h-4 text-amber-700" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-sm">
+                        Régénérer : {targetSectionToRegenerate.label}
+                      </h3>
+                      <p className="text-[11px] text-slate-500">
+                        Le reste de la fiche reste rigoureusement intact.
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setTargetSectionToRegenerate(null)}
+                    className="text-slate-400 hover:text-slate-600 text-sm font-bold"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Suggestions rapides */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700 block">
+                    Suggestions rapides d'ajustement :
+                  </label>
+                  <div className="flex flex-wrap gap-1.5">
+                    {[
+                      'Niveau plus difficile (approfondissement)',
+                      'Niveau plus accessible (remédiation)',
+                      'Ajouter des exemples sénégalais (Kaolack, Dakar)',
+                      'Activité expérimentale avec matériel simple',
+                      'Exercice vrai/faux supplémentaire',
+                    ].map((sugg, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setConsigneCustom(sugg)}
+                        className="text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full border border-slate-200 transition-colors"
+                      >
+                        + {sugg}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Consigne personnalisée */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-slate-700 block">
+                    Votre consigne pédagogique spécifique :
+                  </label>
+                  <textarea
+                    value={consigneCustom}
+                    onChange={(e) => setConsigneCustom(e.target.value)}
+                    placeholder="Ex: Proposer un problème d'application lié à la masse volumique de l'huile d'arachide au Sénégal..."
+                    rows={3}
+                    className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0F2C59]"
+                  />
+                </div>
+
+                <div className="flex items-center justify-end gap-2.5 pt-2">
+                  <button
+                    onClick={() => setTargetSectionToRegenerate(null)}
+                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-colors"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    onClick={handleRegenerateSection}
+                    disabled={isRegeneratingSection}
+                    className="px-5 py-2 bg-[#0F2C59] hover:bg-[#1E3A8A] text-white font-bold text-xs rounded-xl shadow transition-all disabled:opacity-50 inline-flex items-center gap-1.5"
+                  >
+                    {isRegeneratingSection ? (
+                      <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    ) : (
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                    )}
+                    <span>Régénérer cette partie</span>
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 
