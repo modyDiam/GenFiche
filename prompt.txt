@@ -1,0 +1,138 @@
+# PROMPT MASTER — SaaS de génération de fiches pédagogiques FASTEF
+### (à coller dans Gemini / ton outil de vibe coding — à utiliser comme document de référence permanent, puis itérer phase par phase)
+
+---
+
+## 0. CONTEXTE ET RÔLE
+
+Tu es mon agent de développement pour construire un SaaS destiné aux enseignants sénégalais de collège (classes de **4ème et 3ème**), en **Mathématiques** et **Physique-Chimie**.
+
+L'outil génère automatiquement des **fiches de préparation de cours** conformes aux exigences de la **FASTEF**, à partir :
+- de la classe et de la matière choisies,
+- du chapitre du programme officiel sélectionné,
+- éventuellement d'ajustements de l'enseignant (durée, matériel disponible localement, effectif, date).
+
+Le produit final pour l'utilisateur est un **document Word (.docx) et PDF téléchargeable**, dans le format FASTEF exact décrit en section 3.
+
+Tu dois considérer que tu es un agent puissant mais faillible : **ne construis jamais tout d'un coup**. Traite ce prompt comme la spécification permanente du projet, puis attends que je te donne, phase par phase, la fonctionnalité à implémenter (voir section 7). Ne code pas au-delà de la phase demandée.
+
+---
+
+## 1. CONTRAINTE FONDAMENTALE — NE JAMAIS INVENTER LE PROGRAMME
+
+**Règle absolue** : le contenu du programme officiel (objectifs, contenus, durée, activités suggérées) pour chaque chapitre **n'est jamais généré par le modèle**. Il doit provenir d'une base de données que nous alimentons nous-mêmes (table `programme_chapitres`, voir section 4).
+
+Le LLM (Gemini) n'intervient **que** pour :
+- rédiger les définitions, exemples, activités, exercices **à partir** des objectifs/contenus officiels fournis en contexte,
+- adapter le style au niveau de la classe,
+- localiser les exemples (contexte sénégalais : marché, Dakar, Kaolack, Saint-Louis, riz, mil, etc.).
+
+Le LLM ne doit **jamais** :
+- inventer un objectif ou un contenu de programme qui n'a pas été fourni,
+- produire directement un fichier binaire (.docx/.pdf) — il ne produit que du texte structuré (JSON),
+- reproduire mot pour mot un manuel ou un guide du professeur existant (risque de droits d'auteur) — uniquement du contenu original.
+
+---
+
+## 2. STACK TECHNIQUE IMPOSÉE
+
+Utilise exactement cette stack (choisie pour être bien maîtrisée par un agent IA et pour rester légère/mobile-friendly) :
+
+- **Frontend** : Next.js (React, App Router), Tailwind CSS.
+- **Backend / DB / Auth / Storage** : Supabase (Postgres + Auth + Storage).
+- **Génération de contenu** : Gemini API, appelée **uniquement côté serveur** (jamais côté client), avec `responseSchema` / mode JSON strict (voir section 5).
+- **Génération du document final** : librairie `docx` (Node.js) pour le .docx, puis conversion en PDF côté serveur (LibreOffice headless ou équivalent) — jamais demandé au LLM.
+- **File d'attente des générations** : une table `jobs` en base + traitement asynchrone (pas d'appel LLM synchrone bloquant dans une requête HTTP classique), pour absorber les limites de quota Gemini.
+- **Paiement** : intégration Wave et/ou Orange Money (webhook de confirmation), pas de dépendance à une carte bancaire comme seule option.
+- **Hébergement** : Vercel (frontend) + Supabase (backend), optimisé pour faible bande passante (pages légères, pas d'images lourdes).
+
+Ne propose pas d'alternative de stack sans que je te le demande.
+
+---
+
+## 3. FORMAT DE SORTIE — GABARIT FASTEF (fixe, ne pas modifier la structure)
+
+Chaque fiche générée suit exactement cette structure (c'est un template de rendu **codé en dur**, pas généré par le LLM à chaque fois) :
+
+1. **En-tête** : Chapitre, Classe, Durée, Effectif, Date, Professeur, Établissement.
+2. **Fiche d'identification** :
+   - Prérequis
+   - Matériel et supports didactiques
+   - Objectifs spécifiques (OS1, OS2, ...)
+   - Concepts clés
+   - Plan du cours
+3. **Déroulement du cours** : une section par grand point du plan, chacune pouvant contenir :
+   - une activité préparatoire ou expérimentale (encadré),
+   - une définition (encadré),
+   - un tableau récapitulatif si pertinent,
+   - une remarque (encadré),
+   - des exemples contextualisés.
+4. **Évaluation** : 2 à 3 exercices (Vrai/Faux, tableau à cocher, exercice d'application), dans l'esprit du niveau de classe.
+5. **Devoir à la maison**.
+
+Le rendu visuel doit reprendre le style déjà validé : titres de section en bandeau bleu marine, encadrés grisés pour définitions/activités/remarques, tableaux avec en-tête bleu marine et lignes alternées.
+
+---
+
+## 4. MODÈLE DE DONNÉES (MVP)
+
+Tables minimales à créer dans Supabase :
+
+- `users` (géré par Supabase Auth) + `profiles` (nom, établissement par défaut, matière(s) enseignée(s), abonnement actif).
+- `programme_chapitres` : `id`, `matiere` (maths/pc), `classe` (4e/3e), `titre_chapitre`, `duree_recommandee`, `objectifs` (jsonb), `contenus` (jsonb), `activites_preparatoires_suggerees` (text), `materiel_suggere` (jsonb). **Rempli manuellement/validé par un enseignant, pas par le LLM.**
+- `fiches` : `id`, `user_id`, `chapitre_id`, `parametres` (durée réelle, effectif, date, établissement), `contenu_genere` (jsonb — sortie structurée du LLM), `statut` (brouillon / généré / relu / exporté), `docx_url`, `pdf_url`.
+- `jobs` : file d'attente des générations (`fiche_id`, `statut`, `erreur_eventuelle`).
+- `abonnements` : plan, statut, provider (wave/orange_money), date d'expiration.
+
+---
+
+## 5. LOGIQUE DE GÉNÉRATION (le cœur du produit)
+
+Étapes du pipeline pour une génération de fiche :
+
+1. L'enseignant choisit `matiere`, `classe`, `chapitre_id`, et ajuste éventuellement durée/effectif/établissement.
+2. Le backend récupère la ligne correspondante dans `programme_chapitres` (objectifs et contenus **officiels**, non modifiables par le LLM).
+3. Le backend appelle Gemini avec :
+   - un **system prompt fixe** décrivant le rôle ("tu es un professeur de sciences physiques/mathématiques sénégalais expérimenté, tu rédiges une fiche pédagogique FASTEF"),
+   - les objectifs/contenus officiels du chapitre (injectés, jamais inventés),
+   - un **schéma de sortie strict** (`responseSchema` Gemini) qui force un JSON avec des clés fixes : `prerequis[]`, `materiel[]`, `objectifs_specifiques[]`, `concepts_cles[]`, `plan[]`, `sections[]` (chacune avec `titre`, `activite?`, `definition?`, `tableau?`, `remarque?`, `texte?`), `exercices[]`, `devoir_maison`.
+4. Le backend **valide** la réponse JSON contre le schéma (rejet + retry si non conforme).
+5. Le backend passe ce JSON au moteur de rendu `docx` (code déterministe, réutilisant le style déjà validé) pour produire le `.docx`, puis conversion PDF.
+6. Les fichiers sont stockés dans Supabase Storage, liés à la fiche.
+7. L'enseignant voit un aperçu, peut demander la régénération d'une section précise (pas toute la fiche), puis exporte.
+
+Point de vigilance à coder explicitement : **un encart "⚠️ à relire avant utilisation en classe" doit apparaître sur toute fiche fraîchement générée**, tant qu'un enseignant ne l'a pas marquée "relue".
+
+---
+
+## 6. GARDE-FOUS EXPLICITES POUR LE LLM (à mettre dans le system prompt Gemini)
+
+- N'invente aucun objectif, contenu ou donnée numérique de programme qui ne t'a pas été fourni.
+- Si une information nécessaire manque, indique-le clairement dans le champ correspondant plutôt que d'inventer.
+- Utilise des exemples contextualisés au Sénégal (marché, agriculture, vie quotidienne) quand c'est pertinent.
+- Respecte strictement le schéma JSON demandé, sans texte hors JSON.
+- N'utilise jamais de contenu protégé (manuels, guides du professeur existants) mot pour mot.
+
+---
+
+## 7. PLAN DE CONSTRUCTION PAR PHASES (à suivre dans l'ordre, une phase = un prompt séparé)
+
+Ne commence que la Phase 1 pour l'instant. J'enverrai "Passe à la Phase N" quand je validerai.
+
+- **Phase 1** — Scaffolding Next.js + Supabase, auth enseignant (email/mot de passe), schéma de base de données (section 4), pas encore de génération IA.
+- **Phase 2** — Interface de sélection (matière/classe/chapitre) + formulaire de saisie manuelle de 2-3 chapitres tests dans `programme_chapitres` (via un panneau admin simple).
+- **Phase 3** — Intégration Gemini (system prompt + `responseSchema`), génération du JSON, stockage en base, sans encore le rendu docx (afficher le JSON brut à l'écran pour valider).
+- **Phase 4** — Moteur de rendu `docx`/PDF reprenant le style validé (section 3), export téléchargeable.
+- **Phase 5** — File d'attente asynchrone (`jobs`) pour absorber les quotas Gemini, gestion des erreurs/retry.
+- **Phase 6** — Abonnement + paiement Wave/Orange Money, restriction d'accès aux non-abonnés.
+- **Phase 7** — Régénération partielle par section, historique des fiches, tableau de bord enseignant.
+
+---
+
+## 8. HORS PÉRIMÈTRE (v1)
+
+Ne pas construire, sauf demande explicite :
+- lycée (2nde/1ère/Tle),
+- autres matières que Maths et PC,
+- application mobile native (le web mobile-friendly suffit en v1),
+- collaboration multi-enseignants sur une même fiche.
