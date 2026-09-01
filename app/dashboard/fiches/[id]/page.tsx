@@ -93,14 +93,23 @@ function FicheDetailContent() {
     initData();
   }, [ficheId, chapitreIdParam]);
 
-  // Déclencheur de l'appel Gemini API
+  const [activeJobId, setActiveJobId] = useState<string | null>(null);
+  const [jobStatut, setJobStatut] = useState<string | null>(null);
+  const [jobTentatives, setJobTentatives] = useState(0);
+  const [jobError, setJobError] = useState<string | null>(null);
+
+  // Déclencheur de l'appel asynchrone en file d'attente (Phase 5)
   const handleGenerateGemini = async () => {
     if (!chapitre) return;
     setIsGenerating(true);
+    setJobError(null);
     setGenerationInfo(null);
+    setJobStatut('en_attente');
+    setJobTentatives(1);
 
     try {
-      const response = await fetch('/api/generate-fiche', {
+      // 1. Soumission du job à l'API asynchrone
+      const response = await fetch('/api/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -113,22 +122,45 @@ function FicheDetailContent() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Erreur lors de la génération.');
+        throw new Error(data.error || 'Erreur lors de la mise en file d\'attente.');
       }
 
-      setContenuGenere(data.contenu_genere);
-      setIsRelue(false);
-      setGenerationInfo(data.message);
+      const jobId = data.jobId;
+      setActiveJobId(jobId);
 
-      // Sauvegarde locale pour persistance fluide
-      if (typeof window !== 'undefined') {
-        sessionStorage.setItem(`fiche_contenu_${ficheId}`, JSON.stringify(data.contenu_genere));
-      }
+      // 2. Polling régulier de l'état d'avancement du job
+      const interval = setInterval(async () => {
+        try {
+          const pollRes = await fetch(`/api/jobs/${jobId}`);
+          if (!pollRes.ok) return;
+
+          const jobData = await pollRes.json();
+          setJobStatut(jobData.statut);
+          setJobTentatives(jobData.tentatives || 1);
+
+          if (jobData.statut === 'termine' && jobData.contenu_genere) {
+            clearInterval(interval);
+            setIsGenerating(false);
+            setContenuGenere(jobData.contenu_genere);
+            setIsRelue(false);
+            setGenerationInfo('Génération FASTEF finalisée avec succès via la file d\'attente asynchrone.');
+
+            if (typeof window !== 'undefined') {
+              sessionStorage.setItem(`fiche_contenu_${ficheId}`, JSON.stringify(jobData.contenu_genere));
+            }
+          } else if (jobData.statut === 'erreur') {
+            clearInterval(interval);
+            setIsGenerating(false);
+            setJobError(jobData.erreur_eventuelle || 'Erreur lors du traitement en arrière-plan.');
+          }
+        } catch (pollErr) {
+          console.warn('Polling job error:', pollErr);
+        }
+      }, 1200);
     } catch (err: any) {
-      console.error('Erreur génération Gemini:', err);
-      setGenerationInfo('Erreur : ' + (err.message || 'Impossible de contacter le serveur.'));
-    } finally {
+      console.error('Erreur soumission job:', err);
       setIsGenerating(false);
+      setJobError(err.message || 'Impossible de contacter le service de file d\'attente.');
     }
   };
 
@@ -298,6 +330,83 @@ function FicheDetailContent() {
           </button>
         )}
       </div>
+
+      {/* File d'attente asynchrone Phase 5 en direct */}
+      {isGenerating && (
+        <div className="bg-white rounded-2xl border border-blue-200 shadow-sm p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-blue-600 animate-ping"></div>
+              <h3 className="font-bold text-slate-900 text-sm">
+                File d'attente asynchrone FASTEF (Phase 5)
+              </h3>
+            </div>
+            <span className="text-[11px] font-mono bg-blue-50 text-[#0F2C59] font-bold px-2.5 py-1 rounded-full border border-blue-200">
+              Ticket : {activeJobId || 'initialisation...'}
+            </span>
+          </div>
+
+          {/* Étapes du job */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
+            <div
+              className={`p-3 rounded-xl border flex items-center gap-2.5 ${
+                jobStatut === 'en_attente'
+                  ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold animate-pulse'
+                  : 'bg-slate-50 border-slate-200 text-slate-600'
+              }`}
+            >
+              <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>1. En file d'attente</span>
+            </div>
+
+            <div
+              className={`p-3 rounded-xl border flex items-center gap-2.5 ${
+                jobStatut === 'en_cours'
+                  ? 'bg-blue-50 border-blue-300 text-blue-950 font-bold animate-pulse'
+                  : 'bg-slate-50 border-slate-200 text-slate-600'
+              }`}
+            >
+              <RefreshCw className={`w-4 h-4 text-blue-600 shrink-0 ${jobStatut === 'en_cours' ? 'animate-spin' : ''}`} />
+              <span>
+                2. Appel Gemini (Essai {jobTentatives}/3)
+              </span>
+            </div>
+
+            <div
+              className={`p-3 rounded-xl border flex items-center gap-2.5 ${
+                jobStatut === 'termine'
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-bold'
+                  : 'bg-slate-50 border-slate-200 text-slate-600'
+              }`}
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>3. Validation FASTEF</span>
+            </div>
+          </div>
+          <p className="text-[11px] text-slate-500 italic">
+            Ce traitement asynchrone absorbe les limites de quota de Gemini et évite les blocages de session.
+          </p>
+        </div>
+      )}
+
+      {/* Erreur de job avec bouton Retry */}
+      {jobError && (
+        <div className="bg-red-50 border-l-4 border-red-500 rounded-r-xl p-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <strong className="block text-red-950 font-bold text-xs">
+              Échec du traitement du job (quotas dépassés ou erreur réseau)
+            </strong>
+            <p className="text-xs text-red-800">{jobError}</p>
+          </div>
+          <button
+            onClick={handleGenerateGemini}
+            className="shrink-0 bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Réessayer</span>
+          </button>
+        </div>
+      )}
 
       {/* Notification d'état de génération */}
       {generationInfo && (
