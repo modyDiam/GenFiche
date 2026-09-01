@@ -205,6 +205,13 @@ function PrintContent() {
 
               {sec.texte && <p className="text-slate-700">{sec.texte}</p>}
 
+              {sec.application && (
+                <div className="bg-emerald-50/70 border-l-4 border-emerald-600 p-2.5 rounded-r">
+                  <strong className="text-emerald-950 block mb-0.5 font-bold">Application immédiate (Exemple résolu) :</strong>
+                  <p className="text-slate-800 font-medium whitespace-pre-line">{sec.application}</p>
+                </div>
+              )}
+
               {sec.remarque && (
                 <div className="text-[11px] text-amber-900 italic bg-amber-50 p-2 rounded border border-amber-200">
                   <strong>Remarque :</strong> {sec.remarque}

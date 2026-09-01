@@ -393,6 +393,11 @@ export async function generateFASTEFDocx(
       );
     }
 
+    if (sec.application) {
+      children.push(createActivityBox("Application immédiate / Exemple résolu", sec.application));
+      children.push(new Paragraph({ spacing: { before: 60 } }));
+    }
+
     if (sec.remarque) {
       children.push(
         new Paragraph({

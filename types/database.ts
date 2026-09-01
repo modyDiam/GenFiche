@@ -55,6 +55,7 @@ export interface FicheFASTEFContenu {
     };
     remarque?: string;
     texte?: string;
+    application?: string;
     exemples?: string[];
   }>;
   exercices: Array<{

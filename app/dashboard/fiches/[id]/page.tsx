@@ -696,6 +696,13 @@ function FicheDetailContent() {
                       <p className="text-xs text-slate-700 leading-relaxed">{sec.texte}</p>
                     )}
 
+                    {sec.application && (
+                      <div className="bg-emerald-50/70 border-l-4 border-emerald-600 p-3 rounded-r text-xs">
+                        <strong className="text-emerald-950 block mb-1 font-bold">Application immédiate (Exemple résolu) :</strong>
+                        <p className="text-slate-800 leading-relaxed font-medium whitespace-pre-line">{sec.application}</p>
+                      </div>
+                    )}
+
                     {sec.remarque && (
                       <div className="bg-amber-50/70 p-3 rounded border border-amber-200 text-xs text-amber-900">
                         <strong>Remarque :</strong> {sec.remarque}

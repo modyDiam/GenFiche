@@ -37,8 +37,9 @@ export const FASTEF_JSON_SCHEMA = {
           titre: { type: 'STRING', description: 'Titre de la sous-partie' },
           activite: { type: 'STRING', description: 'Activité préparatoire ou expérimentale encadrée' },
           definition: { type: 'STRING', description: 'Définition institutionnelle ou formule mise en évidence' },
-          remarque: { type: 'STRING', description: 'Remarque pédagogique importante ou précaution' },
-          texte: { type: 'STRING', description: 'Explication détaillée et synthèse' },
+          remarque: { type: 'STRING', description: 'Remarque pédagogique importante, contre-exemple ou précaution' },
+          texte: { type: 'STRING', description: 'Explication théorique détaillée, équations-bilans complètes et synthèse' },
+          application: { type: 'STRING', description: 'Exercice d\'application immédiate avec sa résolution pas-à-pas pour ancrer la formule ou la règle' },
           exemples: {
             type: 'ARRAY',
             description: 'Exemples concrets contextualisés au Sénégal',
