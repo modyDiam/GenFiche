@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
         // Appel strict côté serveur avec responseSchema
         const response = await ai.models.generateContent({
-          model: 'gemini-2.0-flash',
+          model: 'gemini-3.6-flash',
           contents: userPrompt,
           config: {
             systemInstruction: systemPrompt,

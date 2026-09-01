@@ -150,7 +150,7 @@ export class JobService {
           const userPrompt = buildFASTEFUserPrompt(chapitre, parametres);
 
           const response = await ai.models.generateContent({
-            model: 'gemini-2.0-flash',
+            model: 'gemini-3.6-flash',
             contents: userPrompt,
             config: {
               systemInstruction: systemPrompt,
