@@ -410,6 +410,27 @@ export async function generateFASTEFDocx(
       );
     }
 
+    if (sec.schema_montage) {
+      children.push(
+        new Paragraph({
+          spacing: { before: 80, after: 40 },
+          children: [
+            new TextRun({ text: `📐 Schéma du montage expérimental : ${sec.schema_montage.titre}`, bold: true, size: 18, color: '0F2C59' }),
+          ],
+        })
+      );
+      if (sec.schema_montage.legendes && sec.schema_montage.legendes.length > 0) {
+        children.push(
+          new Paragraph({
+            spacing: { before: 20, after: 60 },
+            children: [
+              new TextRun({ text: `Légendes à reproduire au tableau et par les élèves : ${sec.schema_montage.legendes.join(' • ')}`, italics: true, size: 17, color: '4B5563' }),
+            ],
+          })
+        );
+      }
+    }
+
     if (sec.exemples && sec.exemples.length > 0) {
       children.push(
         new Paragraph({

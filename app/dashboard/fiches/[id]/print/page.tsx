@@ -218,6 +218,25 @@ function PrintContent() {
                 </div>
               )}
 
+              {sec.schema_montage && sec.schema_montage.svg_code && (
+                <div className="bg-slate-50 border border-slate-300 rounded p-3 my-2 text-center break-inside-avoid">
+                  <span className="text-[11px] font-bold text-[#0F2C59] block mb-1.5">
+                    Schéma : {sec.schema_montage.titre || 'Montage expérimental'}
+                  </span>
+                  <div 
+                    className="flex justify-center items-center [&>svg]:max-h-44 [&>svg]:w-auto bg-white p-2 rounded border border-slate-200"
+                    dangerouslySetInnerHTML={{ __html: sec.schema_montage.svg_code }}
+                  />
+                  {sec.schema_montage.legendes && sec.schema_montage.legendes.length > 0 && (
+                    <div className="mt-1.5 text-[10px] text-slate-600 flex flex-wrap justify-center gap-x-3 gap-y-0.5">
+                      {sec.schema_montage.legendes.map((leg, lIdx) => (
+                        <span key={lIdx}>• {leg}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {sec.exemples && sec.exemples.length > 0 && (
                 <div className="text-slate-700 bg-slate-50 p-2 rounded">
                   <strong className="block text-slate-900 font-bold mb-0.5">Exemples sénégalais :</strong>

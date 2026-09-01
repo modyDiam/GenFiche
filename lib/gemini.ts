@@ -56,6 +56,20 @@ export const FASTEF_JSON_SCHEMA = {
               },
             },
           },
+          schema_montage: {
+            type: 'OBJECT',
+            description: 'Schéma vectoriel SVG du montage ou du concept physique/chimique pour le tableau et le cahier',
+            properties: {
+              titre: { type: 'STRING', description: 'Titre du schéma (ex: Schéma du montage de dilution avec fiole jaugée)' },
+              svg_code: { type: 'STRING', description: 'Code SVG complet autonome et valide (largeur ~400, hauteur ~220, viewBox="0 0 400 220") illustrant clairement le dispositif' },
+              legendes: {
+                type: 'ARRAY',
+                description: 'Liste des éléments légendés du schéma',
+                items: { type: 'STRING' },
+              },
+            },
+            required: ['titre', 'svg_code'],
+          },
         },
         required: ['titre'],
       },
@@ -142,6 +156,7 @@ GARDE-FOUS ABSOLUS ET RÈGLES DÉONTOLOGIQUES :
    - "texte" : L'explication scientifique claire, l'interprétation des observations et les équations-bilans complètes (moléculaires et ioniques).
    - "application" : Un exercice d'application numérique immédiate avec sa solution pas-à-pas (ex: calcul de C pour 20g de soude dans 200 mL d'eau ; calcul de Req pour 2 résistors).
    - "remarque" : Remarques importantes, contre-exemples (ex: eau + huile = mélange hétérogène, pas une solution) ou consignes de sécurité.
+   - "schema_montage" : POUR LES NOTIONS EXPÉRIMENTALES OU THÉORIQUES CLÉS (ex: circuit électrique, fiole jaugée, burette graduée, lentille et rayon, dynamomètre), FOURNIS IMPÉRATIVEMENT un schéma vectoriel SVG clair, autonome et professionnel (viewBox="0 0 400 220") avec traits noirs ou colorés et annotations, ainsi que la liste des légendes.
    - "exemples" : 2 à 3 exemples vivants ancrés dans la vie quotidienne et l'environnement sénégalais.
    - "tableau" : Tableau récapitulatif comparatif dès que pertinent (propriétés physiques des métaux Cu, Al, Fe, Zn, Pb ; tableau de mesures U = f(I) ; tableau des familles d'hydrocarbures).
 
@@ -267,6 +282,32 @@ export function generateSimulatedFASTEF(
         : `Étude approfondie de la notion de ${rawTheme} conformément aux exigences du programme FASTEF du cycle moyen sénégalais.`,
       application: `Exemple résolu pas-à-pas : Application numérique directe de la règle sur ${rawTheme} avec démarche méthodologique complète et justification des unités.`,
       remarque: `Remarque didactique : Respecter scrupuleusement les limites fixées par le programme sénégalais et veiller aux règles de sécurité en laboratoire.`,
+      schema_montage: pIdx === 0 ? {
+        titre: `Dispositif d'étude pour : ${chapitre.titre_chapitre}`,
+        svg_code: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" width="100%" height="160">
+  <rect width="400" height="180" fill="#F8FAFC" rx="8" stroke="#CBD5E1" stroke-width="1.5"/>
+  <!-- Support de paillasse -->
+  <line x1="30" y1="150" x2="370" y2="150" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <!-- Pied statif -->
+  <rect x="50" y="145" width="80" height="10" fill="#334155" rx="2"/>
+  <line x1="90" y1="145" x2="90" y2="30" stroke="#334155" stroke-width="4"/>
+  <line x1="90" y1="50" x2="160" y2="50" stroke="#64748B" stroke-width="3"/>
+  <!-- Dispositif de mesure / Verrerie / Composant -->
+  <rect x="180" y="60" width="90" height="85" fill="#E2E8F0" stroke="#0F2C59" stroke-width="2" rx="4"/>
+  <path d="M195 140 Q225 142 255 140" stroke="#0284C7" stroke-width="3" fill="none"/>
+  <rect x="200" y="80" width="50" height="40" fill="#BAE6FD" rx="2" stroke="#0284C7" stroke-width="1"/>
+  <!-- Flèche d'annotation -->
+  <line x1="285" y1="95" x2="330" y2="80" stroke="#DC2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="290" y="70" font-size="11" font-weight="bold" fill="#0F2C59" font-family="sans-serif">Dispositif expérimental</text>
+  <text x="290" y="125" font-size="10" fill="#475569" font-family="sans-serif">Mesure &amp; Observation</text>
+  <line x1="285" y1="120" x2="260" y2="120" stroke="#64748B" stroke-width="1" stroke-dasharray="2,2"/>
+</svg>`,
+        legendes: [
+          "Support statif de laboratoire",
+          "Récipient gradué ou dipôle d'étude",
+          "Zone de mesure et observation des élèves"
+        ]
+      } : undefined,
       exemples: [
         `Exemple d'application dans la vie courante au Sénégal en lien avec ${rawTheme}.`,
         `Situation-problème locale contextualisée (marché, atelier, environnement).`

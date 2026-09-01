@@ -720,6 +720,28 @@ function FicheDetailContent() {
                       </div>
                     )}
 
+                    {sec.schema_montage && sec.schema_montage.svg_code && (
+                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 my-3 text-center">
+                        <span className="text-[11px] font-bold text-[#0F2C59] uppercase tracking-wider block mb-2">
+                          📐 {sec.schema_montage.titre || 'Schéma du montage / Illustration scientifique'}
+                        </span>
+                        <div 
+                          className="flex justify-center items-center max-w-full overflow-hidden [&>svg]:max-h-56 [&>svg]:w-auto bg-white p-3 rounded-lg border border-slate-100 shadow-inner"
+                          dangerouslySetInnerHTML={{ __html: sec.schema_montage.svg_code }}
+                        />
+                        {sec.schema_montage.legendes && sec.schema_montage.legendes.length > 0 && (
+                          <div className="mt-2.5 pt-2 border-t border-slate-200 text-[11px] text-slate-600 flex flex-wrap justify-center gap-x-4 gap-y-1">
+                            {sec.schema_montage.legendes.map((leg, lIdx) => (
+                              <span key={lIdx} className="inline-flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#0F2C59]" />
+                                <span>{leg}</span>
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
                     {sec.exemples && sec.exemples.length > 0 && (
                       <div className="text-xs text-slate-600 bg-slate-50 p-3 rounded border border-slate-100">
                         <strong className="text-slate-800 block mb-1">Exemples d'application (Contexte Sénégal) :</strong>

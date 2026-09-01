@@ -57,6 +57,11 @@ export interface FicheFASTEFContenu {
     texte?: string;
     application?: string;
     exemples?: string[];
+    schema_montage?: {
+      titre: string;
+      svg_code: string;
+      legendes?: string[];
+    };
   }>;
   exercices: Array<{
     titre: string;
