@@ -42,7 +42,10 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Savoir présenter les résultats d'une mesure en notation scientifique."
     ],
     contenus: [
-      "Grandeurs physiques : unités de mesures, appareils de mesure, mesures",
+      "Grandeurs physiques",
+      "- Unités de mesures",
+      "- Appareils de mesure",
+      "- mesures",
       "Conversion des unités : utilisation des puissances de 10",
       "Ordre de grandeur - vraisemblance des résultats",
       "Chiffres significatifs",
@@ -72,9 +75,15 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Prévoir la disposition des constituants d'un mélange liquide hétérogène."
     ],
     contenus: [
-      "Masse : balance, définition, unités, mesures",
-      "Masse volumique : relation m = ρ × V, unités (kg/m³, g/cm³)",
-      "Densité : d = ρ / ρ_eau, comparaison des densités et flottabilité"
+      "Masse",
+      "- Balance",
+      "- Définition",
+      "- Unités",
+      "- mesures",
+      "Masse volumique",
+      "- Définition, formule m = ρ × V, unités (kg/m³, g/cm³)",
+      "Densité",
+      "- Définition, d = ρ / ρ_eau, comparaison et flottabilité"
     ],
     activites_preparatoires_suggerees: "Thème : Faire des recherches sur les balances : types de balances, caractéristiques et utilisations courantes. Définir la masse comme grandeur caractéristique d'un corps que l'on détermine à l'aide d'une balance. Mesure de masses et de volumes de liquides et solides usuels.",
     materiel_suggere: [
@@ -97,9 +106,15 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Utiliser la relation entre le poids et la masse (P = m × g)."
     ],
     contenus: [
-      "Poids : mise en évidence, définition, caractéristiques (point d'application G, droite d'action, sens, valeur en Newton N)",
-      "Mesures au dynamomètre et représentation vectorielle",
-      "Relation entre poids et masse : intensité de la pesanteur g et son unité (N/kg)"
+      "Poids",
+      "- Mise en évidence",
+      "- Définition",
+      "- Caractéristiques (point d'application G, direction, sens, intensité)",
+      "- mesures, unités (Newton N)",
+      "- Représentation vectorielle",
+      "Relation entre poids et masse",
+      "- Intensité de la pesanteur g (N/kg)",
+      "- Relation P = m × g"
     ],
     activites_preparatoires_suggerees: "1. Masse ou poids ? Relevez sur différents objets de votre entourage les indications relatives à ces deux grandeurs. Quelles remarques peut-on faire ? 2. Masse et poids représentent-ils la même grandeur physique ? Si non, quelle(s) différence(s) faire entre ces deux grandeurs ?",
     materiel_suggere: [
@@ -132,13 +147,24 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Appliquer et faire appliquer les consignes de sécurité liées au courant électrique."
     ],
     contenus: [
-      "Le courant électrique : circuit électrique, dipôles et symboles, conducteurs et isolants électriques",
-      "Circuit série, circuit parallèle (dérivation)",
-      "Effets du courant électrique : calorifiques, lumineux, chimiques et magnétiques",
-      "Sens conventionnel du courant",
-      "Intensité : définition, unité (Ampère A), utilisation de l'ampèremètre, lois des intensités (unicité en série, loi des nœuds)",
-      "Tension électrique : définition, unité (Volt V), voltmètre, lois des tensions",
-      "Protection et sécurité électrique (court-circuit, fusibles)"
+      "Le courant électrique",
+      "- Circuit électrique",
+      "- Dipôles et symboles normalisés",
+      "- Circuit série, circuit avec dérivation (parallèle)",
+      "- Conducteurs et isolants électriques",
+      "Effets du courant électrique",
+      "- Effets calorifiques, lumineux, chimiques, magnétiques",
+      "- Sens conventionnel du courant",
+      "Intensité du courant électrique",
+      "- Définition, unité (Ampère A)",
+      "- Utilisation de l'ampèremètre",
+      "- Lois de l'intensité (unicité en série, loi des nœuds)",
+      "Tension électrique",
+      "- Définition, unité (Volt V)",
+      "- Utilisation du voltmètre",
+      "- Lois des tensions (additivité en série, unicité en dérivation)",
+      "Protection des personnes et des appareils",
+      "- Court-circuit, rôle des fusibles et du disjoncteur"
     ],
     activites_preparatoires_suggerees: "1. Recherchez dans votre environnement divers appareils et composants électriques, relevez les indications marquées sur ces appareils. Quelles grandeurs physiques évoquent ces indications ? 2. Pouvez-vous faire fonctionner ces composants ? (sécurité). 3. Court-circuit, courant continu, courant alternatif, fusible, disjoncteur, prise de terre : rechercher la signification et le rôle.",
     materiel_suggere: [
@@ -160,9 +186,11 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Distinguer les sources des récepteurs de lumière."
     ],
     contenus: [
-      "Sources réelles (ou primaires) de lumière : Soleil, flammes, lampes allumées",
-      "Sources apparentes (ou secondaires) de lumière : Lune, objets diffusants éclairés",
-      "Récepteurs de lumière : l'œil humain, cellules photovoltaïques, papier photographique"
+      "Sources de lumière",
+      "- Sources réelles (ou primaires)",
+      "- Sources apparentes (ou secondaires)",
+      "Récepteurs de lumière",
+      "- L'œil, cellules photovoltaïques, papier photographique"
     ],
     activites_preparatoires_suggerees: "1. Considérez les objets qui meublent le salon de votre maison (ou votre chambre). Les classer en objets qui produisent la lumière et en objets qui reçoivent la lumière. 2. À quelle(s) condition(s) ces objets vous sont-ils visibles ?",
     materiel_suggere: [
@@ -183,11 +211,15 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Expliquer le phénomène d'éclipse."
     ],
     contenus: [
-      "Propagation rectiligne de la lumière : faisceaux lumineux (convergent, divergent, cylindrique), rayon lumineux",
-      "Milieu homogène ; milieu transparent, translucide, opaque",
-      "Vitesse ou célérité de la lumière, année lumière",
-      "Ombres et pénombres : ombre propre et ombre portée, pénombre propre et pénombre portée",
-      "Applications : visée, chambre noire, éclipses de Soleil et de Lune"
+      "Propagation rectiligne de la lumière",
+      "- Faisceaux lumineux (convergent, divergent, parallèle)",
+      "- Rayon lumineux",
+      "- Milieu homogène, milieu transparent, translucide, opaque",
+      "- Vitesse ou célérité de la lumière, année-lumière",
+      "Ombres et pénombres",
+      "- Ombre propre, ombre portée, pénombre propre, pénombre portée",
+      "Applications",
+      "- Visée, chambre noire, éclipses de Soleil et de Lune"
     ],
     activites_preparatoires_suggerees: "Chercher une boîte opaque. Découper l'une des faces et la remplacer par un verre dépoli de même dimension (ou du papier huilé). Percer une très petite ouverture sur la face opposée au verre dépoli. Orienter l'ouverture vers un objet tel qu'une bougie allumée. Décrire ce que l'on observe sur le verre dépoli. Interpréter.",
     materiel_suggere: [
@@ -211,11 +243,14 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Appliquer la réflexion et la réfraction dans la vie courante."
     ],
     contenus: [
-      "Réflexion de la lumière : réflexion diffuse et réflexion spéculaire",
-      "Miroir plan, milieu réfringent, point d'incidence, rayon incident et rayon réfléchi",
-      "Angle d'incidence et angle de réflexion, lois de Descartes pour la réflexion (î = r)",
-      "Objet réel et image virtuelle symétrique",
-      "Réfraction de la lumière : rayon réfracté, angle réfracté, applications courantes"
+      "Réflexion de la lumière",
+      "- Réflexion diffuse et réflexion spéculaire",
+      "- Miroir plan, milieu réfringent, point d'incidence, rayon incident et réfléchi",
+      "- Lois de la réflexion (angle d'incidence î = angle de réflexion r)",
+      "- Objet réel et image virtuelle symétrique",
+      "Réfraction de la lumière",
+      "- Rayon réfracté, angle de réfraction, surface de séparation",
+      "- Applications courantes"
     ],
     activites_preparatoires_suggerees: "Thème : Recherche documentaire sur la formation des images. Mise en évidence de la réflexion diffuse, puis de la réflexion spéculaire (par un miroir plan). Expérience des deux bougies pour situer l'image virtuelle.",
     materiel_suggere: [
@@ -244,11 +279,14 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Distinguer mélange et corps pur."
     ],
     contenus: [
-      "Mélange : mélange hétérogène, mélange homogène",
-      "Méthodes de séparation : décantation, filtration, distillation fractionnée, congélation fractionnée",
-      "Corps purs : constantes physiques, critères de pureté",
-      "Corps purs composés, corps purs simples",
-      "Divers exemples de mélanges et de méthodes de séparation (air, fer-soufre, liquides miscibles/non miscibles, liquide-gaz)",
+      "Mélange",
+      "- Mélange hétérogène, mélange homogène",
+      "Méthodes de séparation",
+      "- Décantation, filtration, distillation fractionnée, congélation fractionnée",
+      "Corps purs",
+      "- Constantes physiques, critères de pureté",
+      "- Corps purs composés, corps purs simples",
+      "- Divers exemples de mélanges et de méthodes de séparation (air, fer-soufre, eau-huile, liquide-gaz)",
       "Distinction entre mélange et corps pur"
     ],
     activites_preparatoires_suggerees: "Faire des recherches sur : - Le traitement de l'eau. - Le cycle de l'eau. Définir la notion de mélange à partir d'une eau boueuse et salée. Réaliser la décantation, la filtration puis la distillation du filtrat pour définir un corps pur.",
@@ -276,9 +314,13 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Utiliser des modèles moléculaires."
     ],
     contenus: [
-      "Structure de la matière : discontinuité de la matière, molécule, atome, ion simple, ion polyatomique, élément chimique",
-      "Notation chimique : symbole des éléments, formule d'un corps pur",
-      "Modèle atomique et moléculaire (boules compactes et éclatées)"
+      "Structure de la matière",
+      "- Discontinuité de la matière",
+      "- Molécule, atome, ion simple (positif/négatif), élément chimique",
+      "Notation chimique",
+      "- Symboles des éléments",
+      "- Formules des corps purs",
+      "Modèle atomique et moléculaire"
     ],
     activites_preparatoires_suggerees: "Faire des recherches sur l'historique de l'atome : sens étymologique, découverte des particules subatomiques, modèles d'atomes. Le caractère discontinu de la matière sera dégagé à partir d'observations de la vie courante : exhalaison d'odeur, dilution d'un colorant.",
     materiel_suggere: [
@@ -303,10 +345,14 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Distinguer les deux significations d'une formule chimique."
     ],
     contenus: [
-      "La mole : unité de quantité de matière, constante d'Avogadro",
-      "Masse molaire : masse molaire atomique, masse molaire moléculaire",
-      "Volume molaire : loi d'Avogadro-Ampère, volume molaire Vm (en L/mol)",
-      "Densité d'un gaz par rapport à l'air : formule d = M / 29"
+      "La mole",
+      "- Définition, unité de quantité de matière, constante d'Avogadro",
+      "Masse molaire",
+      "- Masse molaire atomique, masse molaire moléculaire (g/mol)",
+      "Volume molaire d'un gaz",
+      "- Loi d'Avogadro-Ampère, volume molaire Vm (L/mol)",
+      "- Expressions n = m / M et n = V / Vm",
+      "Densité d'un gaz par rapport à l'air (d = M / 29)"
     ],
     activites_preparatoires_suggerees: "1. Pouvez-vous compter le nombre de grains de mil d'une récolte ? Expliquez comment on estime cette récolte. 2. Combien d'atomes de fer y a-t-il dans un échantillon d'un mètre cube sachant que la masse volumique du fer est de 7,8 g/cm³ et que la masse d'un atome de fer est de 8,9 × 10⁻²³ g ?",
     materiel_suggere: [
@@ -331,10 +377,14 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Prendre des mesures de sécurité par rapport aux dangers de certaines réactions chimiques."
     ],
     contenus: [
-      "Réaction chimique : exemples de réactions chimiques, réactif, produit",
-      "Caractéristiques d'une réaction chimique : aspect énergétique, loi de Lavoisier",
-      "Équation-bilan d'une réaction chimique : écriture, équilibrage par coefficients stœchiométriques, interprétation",
-      "Application : résolution de problèmes de stœchiométrie chimique"
+      "Réaction chimique",
+      "- Exemples de réactions chimiques, réactif, produit",
+      "- Caractéristiques d'une réaction chimique : aspect énergétique",
+      "- Loi de conservation de la matière (Lavoisier)",
+      "Équation-bilan d'une réaction chimique",
+      "- Écriture, équilibrage par coefficients stœchiométriques",
+      "- Signification macroscopique et microscopique",
+      "Applications : résolution de problèmes stœchiométriques et sécurité"
     ],
     activites_preparatoires_suggerees: "Thèmes (exploitation sous forme d'exposés) : 1. Pollution liée aux transformations chimiques. 2. Protection de l'environnement et mesures de sécurité à l'encontre de la production de substances nocives. Combustions complètes et incomplètes, dégagement de monoxyde de carbone.",
     materiel_suggere: [
@@ -364,10 +414,16 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Utiliser une lentille convergente."
     ],
     contenus: [
-      "Lentilles minces : lentilles convergentes, divergentes",
-      "Axe optique, centre optique, foyer objet, foyer image, distance focale, vergence",
-      "Objet réel, image réelle, image virtuelle, image droite, image renversée, grandissement",
-      "Applications : anomalies de la vision et correction, loupe, objectif photographique, projecteur de diapositives"
+      "Lentilles minces",
+      "- Lentilles convergentes, lentilles divergentes (symboles, formes)",
+      "- Axe optique, centre optique",
+      "- Foyer objet, foyer image, distance focale f",
+      "- Vergence C = 1 / f (en dioptries δ)",
+      "- Objet réel, image réelle, image virtuelle, droite, renversée",
+      "- Grandissement G = A'B' / AB",
+      "Applications",
+      "- Anomalies de la vision et correction (myopie, hypermétropie, presbytie)",
+      "- Loupe, objectif photographique, projecteur"
     ],
     activites_preparatoires_suggerees: "Faire des recherches sur : 1. L'œil, anomalies, verres correcteurs. 2. La loupe, objectif photographique, le microscope. Partir d'objets familiers tels que les verres correcteurs, la loupe, les jumelles... pour aborder la leçon.",
     materiel_suggere: [
@@ -390,10 +446,13 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
     ],
     contenus: [
       "Phénomène de dispersion",
-      "Spectre de la lumière : ordre de dispersion (rouge, orangé, jaune, vert, bleu, indigo, violet)",
-      "Lumière monochromatique, lumière polychromatique",
-      "Recomposition de la lumière blanche",
-      "Applications et explication de l'arc-en-ciel"
+      "- Spectre de la lumière blanche : ordre de dispersion (rouge, orangé, jaune, vert, bleu, indigo, violet)",
+      "- Lumière monochromatique, lumière polychromatique",
+      "Recomposition de la lumière",
+      "- Expérience du disque de Newton",
+      "Applications",
+      "- Couleurs des objets (absorption et diffusion)",
+      "- Formation de l'arc-en-ciel (dispersion et réfraction dans les gouttes d'eau)"
     ],
     activites_preparatoires_suggerees: "Faire des recherches sur les thèmes : 1. Les couleurs. 2. L'arc-en-ciel. Au moyen d'objets divers (prisme, verre d'eau légèrement incliné, bulles de savon...) faire observer le phénomène de dispersion de la lumière blanche en plusieurs couleurs et noter l'ordre de dispersion.",
     materiel_suggere: [
@@ -420,10 +479,17 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Énoncer le principe des actions réciproques."
     ],
     contenus: [
-      "Forces : effets statiques, effets dynamiques, types de forces, exemples",
-      "Caractéristiques d'une force, unité d'intensité de force (Newton N), représentation vectorielle",
-      "Équilibre d'un solide soumis à l'action de deux forces : notion d'équilibre, conditions nécessaires d'équilibre, forces directement opposées (F1 + F2 = 0)",
-      "Principe des actions réciproques"
+      "Forces",
+      "- Effets statiques, effets dynamiques",
+      "- Types de forces : forces de contact, forces à distance (localisées, réparties)",
+      "- Exemples de forces : poids, tension d'un fil, réaction d'un support",
+      "- Caractéristiques d'une force : point d'application, direction, sens, intensité",
+      "- Unité d'intensité : le Newton (N), mesure au dynamomètre",
+      "- Représentation vectorielle d'une force",
+      "Équilibre d'un solide soumis à l'action de deux forces",
+      "- Notion d'équilibre, conditions nécessaires d'équilibre",
+      "- Forces directement opposées (F1 + F2 = 0)",
+      "Principe des actions réciproques (action et réaction)"
     ],
     activites_preparatoires_suggerees: "1. Recherchez, dans votre environnement, des corps en interaction. Précisez s'il s'agit d'interaction à distance ou d'interaction de contact. 2. Parmi ces corps, lesquels sont en équilibre ? 3. Dans quelle condition un corps peut-il être en équilibre ?",
     materiel_suggere: [
@@ -446,9 +512,16 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Donner l'ordre de grandeur de certaines puissances."
     ],
     contenus: [
-      "Travail mécanique : travail moteur, travail résistant, travail nul, travail du poids, unité du SI : le joule (J)",
-      "Puissance mécanique : unité du SI : le watt (W)",
-      "Formules : W = F × L et P = W / t (et P = F × V)"
+      "Travail mécanique",
+      "- Notion de travail d'une force",
+      "- Travail moteur, travail résistant, travail nul",
+      "- Expression du travail pour une force constante colinéaire au déplacement : W = F × L",
+      "- Travail du poids d'un corps : W(P) = P × h = m × g × h",
+      "- Unité du SI : le joule (J), multiples (kJ, MJ)",
+      "Puissance mécanique",
+      "- Définition, formule P = W / t et P = F × V",
+      "- Unité du SI : le watt (W), kilowatt, cheval-vapeur (1 ch = 736 W)",
+      "- Ordres de grandeur de puissances usuelles"
     ],
     activites_preparatoires_suggerees: "Faire une enquête pour trouver des situations où on parle de travail dans le langage courant. Peut-on caractériser le travail par des grandeurs physiques déjà étudiées dans le cours de physique ? Lesquelles ?",
     materiel_suggere: [
@@ -473,10 +546,15 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Utiliser les relations : I = q / t et q = n × e."
     ],
     contenus: [
-      "Électrisation par frottement : les deux types d'électricité (+ et -), atome, électrons, charges électriques",
-      "Conducteurs et isolants électriques, conducteur métallique",
-      "Le courant électrique : porteurs de charges, conducteur électrolytique, sens conventionnel du courant électrique, nature du courant électrique",
-      "Intensité du courant électrique : relations I = q / t et q = n × e"
+      "Électrisation par frottement",
+      "- Phénomène d'électrisation, les deux types d'électricité (positive sur verre, négative sur ébonite)",
+      "- Interprétation atomique : électrons, noyau, protons, neutres, transfert d'électrons",
+      "- Quantité d'électricité q = n × e (charge élémentaire e = 1,6 × 10⁻¹⁹ C, Coulomb C)",
+      "- Conducteurs et isolants électriques, conducteur métallique",
+      "Le courant électrique",
+      "- Nature du courant électrique : déplacement d'ensemble des porteurs de charges (électrons libres dans les métaux, ions dans les électrolytes)",
+      "- Sens conventionnel du courant (borne + vers -)",
+      "- Intensité du courant électrique : relation I = q / t et q = n × e"
     ],
     activites_preparatoires_suggerees: "Recherchez quelques objets de votre environnement. Pouvez-vous les classer en conducteurs et isolants électriques ? Frottez divers objets pris parmi ces deux catégories, approchez-les de petits bouts de papier. Notez vos observations.",
     materiel_suggere: [
@@ -501,10 +579,13 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Utiliser l'expression de la résistance équivalente pour deux résistors montés en série ou montés en parallèle (l'inverse de la résistance équivalente = somme des inverses)."
     ],
     contenus: [
-      "Conducteur ohmique : résistor, loi d'Ohm, résistance, unité : Ohm (Ω), résistivité",
-      "Résistance d'un fil cylindrique homogène de section constante : R = ρ × L / S",
-      "Résistor équivalent : associations en série (Req = R1 + R2) et en dérivation (1/Req = 1/R1 + 1/R2)",
-      "Rhéostat et potentiomètre"
+      "Conducteur ohmique",
+      "- Résistor : présentation, symboles, anneaux de couleur",
+      "- Étude expérimentale : mesure de U et I, tracé de la caractéristique linéaire U = f(I)",
+      "- Loi d'Ohm : formule U = R × I, unité la résistance en Ohm (Ω)",
+      "- Résistance d'un fil cylindrique homogène de section constante : formule R = ρ × L / S",
+      "- Associations de résistors : résistors en série (Req = R1 + R2), résistors en dérivation (1/Req = 1/R1 + 1/R2)",
+      "- Rhéostat (résistance réglable) et potentiomètre"
     ],
     activites_preparatoires_suggerees: "Visite chez le réparateur de radios : 1. Découvrir différents conducteurs ohmiques (types, formes). 2. Relever les indications marquées sur quelques conducteurs ohmiques. Que signifient ces indications ? Quelle grandeur physique est mesurée en Ohm ?",
     materiel_suggere: [
@@ -529,10 +610,18 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Prendre conscience de la pollution liée à certaines formes d'énergie."
     ],
     contenus: [
-      "Énergie : notion d'énergie, unité du SI : le joule (J)",
-      "Formes d'énergie : énergie électrique, énergie thermique ou calorifique, énergie lumineuse, énergie éolienne, énergie chimique, énergie potentielle (élastique et de pesanteur), énergie cinétique",
-      "Transformation d'énergie : exemples, rendement d'une transformation d'énergie",
-      "Énergie et puissance électriques : énergie électrique W = U × I × t, puissance électrique P = U × I, effet Joule, loi de Joule : W = R × I² × t"
+      "Énergie",
+      "- Notion d'énergie et unité du SI : le joule (J)",
+      "- Formes d'énergie : mécanique, thermique/calorifique, électrique, lumineuse, chimique, éolienne",
+      "- Énergie potentielle de pesanteur (Ep = m × g × h), énergie cinétique (Ec = 1/2 × m × v²)",
+      "- Énergie mécanique : Em = Ec + Ep",
+      "Transformation d'énergie",
+      "- Exemples de transformations, conservation de l'énergie",
+      "- Rendement d'une transformation d'énergie : R = Eu / Er (sans unité, R < 1 ou %)",
+      "Énergie et puissance électriques",
+      "- Puissance électrique : P = U × I (en watt W)",
+      "- Énergie électrique consommée : W = P × t = U × I × t",
+      "- Effet Joule et loi de Joule : formule W = R × I² × t"
     ],
     activites_preparatoires_suggerees: "1. Visite d'une centrale hydroélectrique ou thermique. 2. Recherche sur les sources d'énergies renouvelables (solaire, éolien au Sénégal). Exemples familiers de systèmes susceptibles de fournir ou de transformer de l'énergie.",
     materiel_suggere: [
@@ -560,11 +649,18 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Respecter les consignes de sécurité en manipulant certains produits."
     ],
     contenus: [
-      "Solution : solvant, soluté, solution saturée, solubilité",
-      "Concentration molaire volumique : définition, formulation (C = n / V), unité (mol/L)",
-      "Concentration massique : définition, formulation (Cm = m / V), unités (g/L)",
-      "Relation : Cm = C × M",
-      "Applications : dilutions et préparation de solutions"
+      "Solution",
+      "- Définition : mélange homogène de soluté et solvant",
+      "- Solvant (eau pour solution aqueuse), soluté",
+      "- Solution saturée, notion de solubilité en fonction de la température",
+      "Concentration molaire volumique",
+      "- Définition, formulation C = n / V, unité usuelle (mol/L ou mol.L⁻¹)",
+      "Concentration massique volumique",
+      "- Définition, formulation Cm = m / V, unités (g/L)",
+      "- Relation entre concentration molaire et concentration massique : Cm = C × M",
+      "Applications",
+      "- Préparation de solutions par dissolution",
+      "- Dilution d'une solution : principe de conservation de la matière, relation Ci × Vi = Cf × Vf"
     ],
     activites_preparatoires_suggerees: "Considérer des mélanges liquides de votre environnement. Les classer en mélanges homogènes et en mélanges hétérogènes. Pouvez-vous séparer les constituants des mélanges homogènes ? Si oui, comment ? Réaliser des solutions d'eau salée et d'eau sucrée à saturation.",
     materiel_suggere: [
@@ -589,10 +685,21 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Montrer l'importance des acides et du dosage acido-basique dans la vie courante."
     ],
     contenus: [
-      "Classification des solutions : solutions acides, solutions basiques, solution neutre, indicateur coloré (BBT, papier pH)",
-      "Propriétés des acides et des bases : conductibilité électrique, action des acides sur le calcaire",
-      "Réaction entre l'acide chlorhydrique et la soude : réaction exothermique, neutralisation, équation-bilan (H+ + HO- → H2O)",
-      "Dosage colorimétrique : équivalence acido-basique, relation CA × VA = CB × VB"
+      "Classification des solutions",
+      "- Indicateurs colorés : définition, BBT (Bleu de Bromothymol), papier pH",
+      "- Solutions acides (BBT jaune), solutions basiques (BBT bleu), solutions neutres (BBT vert)",
+      "- Caractère ionique des solutions : ions H+ pour les acides, ions HO- pour les bases",
+      "Propriétés des acides et des bases",
+      "- Conductibilité électrique (électrolytes)",
+      "- Action des acides sur le calcaire (craie CaCO3) avec dégagement de CO2",
+      "Réaction entre l'acide chlorhydrique et la soude",
+      "- Réaction exothermique, phénomène de neutralisation",
+      "- Équation-bilan moléculaire : HCl + NaOH → NaCl + H2O",
+      "- Équation ionique globale et équation simplifiée : H+ + HO- → H2O",
+      "Dosage colorimétrique",
+      "- Notion d'équivalence acido-basique, virage de l'indicateur",
+      "- Relation à l'équivalence : na = nb soit Ca × Va = Cb × Vb",
+      "- Protocole expérimental avec burette graduée, pipette et bécher"
     ],
     activites_preparatoires_suggerees: "Revenir sur les activités préparatoires du chapitre précédent. Prélever environ 2 mL de chacun des liquides homogènes obtenus et ajouter quelques gouttes de jus de « bissap blanc » dilué ou BBT. Noter les observations et changements de teintes selon l'acidité ou basicité.",
     materiel_suggere: [
@@ -618,9 +725,17 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Prendre les précautions nécessaires pour la manipulation des acides et l'utilisation du brûleur."
     ],
     contenus: [
-      "Propriétés physiques des métaux usuels (Al, Zn, Fe, Pb, Cu) : couleur, densité, éclat",
-      "Propriétés chimiques : oxydation à froid (formation de rouille sur le fer, alumine), oxydation à chaud",
-      "Action des acides dilués à froid sur les métaux : acide chlorhydrique, acide sulfurique, dégagement de H2 et formation d'ions métalliques"
+      "Propriétés physiques des métaux usuels (Al, Zn, Fe, Pb, Cu)",
+      "- Aspect, couleur, éclat métallique",
+      "- Masse volumique, température de fusion, conductibilité électrique et thermique",
+      "Propriétés chimiques : oxydation des métaux",
+      "- Oxydation à froid : cas du fer (rouille poreuse Fe2O3), protection du fer (peinture, graisse) ; cas de l'aluminium (alumine protectrice Al2O3)",
+      "- Oxydation à chaud : combustion dans O2 du fer (Fe3O4), de l'aluminium (Al2O3), du zinc (ZnO), du cuivre (CuO noir et Cu2O rouge), du plomb (PbO massicot et Pb3O4 minium)",
+      "Action des acides dilués à froid sur les métaux",
+      "- Action de l'acide chlorhydrique (H+ + Cl-) sur Fe, Zn, Al : dégagement de dihydrogène H2 et formation d'ions Fe2+, Zn2+, Al3+ ; absence de réaction sur le cuivre ; réaction limitée sur le plomb",
+      "- Action de l'acide sulfurique dilué (2H+ + SO4²-)",
+      "- Action de l'acide nitrique dilué (vapeurs rousses nitreuses avec Cu, Fe, Zn)",
+      "- Équations-bilans moléculaires et équations ioniques complètes"
     ],
     activites_preparatoires_suggerees: "1. Quels sont les métaux que vous connaissez ? 2. Où trouve-t-on ces métaux ? À quelles fins les emploie-t-on ? 3. Citez quelques propriétés caractéristiques de ces métaux (fer, cuivre, aluminium, zinc, plomb). Observer leur altération à l'air libre et à l'humidité.",
     materiel_suggere: [
@@ -644,10 +759,18 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
       "Prendre conscience des risques liés à l'utilisation domestique des hydrocarbures et de la pollution."
     ],
     contenus: [
-      "Hydrocarbures : définition, familles et formules générales (alcanes CnH2n+2)",
-      "Formules brutes de quelques hydrocarbures (méthane CH4, éthane C2H6, propane C3H8, butane C4H10)",
-      "Combustion d'hydrocarbures dans le dioxygène : combustion complète, combustion incomplète",
-      "Applications industrielles des hydrocarbures, hydrocarbures et environnement"
+      "Hydrocarbures",
+      "- Définition : composé organique composé uniquement de carbone (C) et d'hydrogène (H)",
+      "- Familles et formules générales : alcanes (CnH2n+2), alcènes (CnH2n), alcynes (CnH2n-2)",
+      "- Formules brutes et noms des hydrocarbures usuels : méthane (CH4), éthane (C2H6), propane (C3H8), butane (C4H10), éthylène/éthène (C2H4), acétylène/éthyne (C2H2)",
+      "- Propriétés physiques : gaz à température ambiante, peu solubles dans l'eau, isolants",
+      "Combustion d'hydrocarbures dans le dioxygène",
+      "- Combustion complète (excès d'O2) : équation-bilan générale produisant CO2 et H2O, caractère exothermique",
+      "- Combustion incomplète (défaut d'O2) : flamme jaune, fumée noire de carbone, danger mortel du monoxyde de carbone (CO)",
+      "Applications et environnement",
+      "- Utilisations industrielles et domestiques : combustibles (gaz butane, kérosène, gas-oil)",
+      "- Matières plastiques et polymères",
+      "- Pollution et effet de serre : rôle du CO2 dans le réchauffement climatique, toxicité du CO"
     ],
     activites_preparatoires_suggerees: "Thème : Recherche documentaire. 1. Chimie des composés organiques et médicaments. 2. Pétrole, gaz naturel, matières plastiques. Expliquer brièvement la formation du gaz naturel et du pétrole, et les précautions d'emploi des bouteilles de gaz butane domestique.",
     materiel_suggere: [
@@ -709,7 +832,7 @@ export const DEFAULT_CHAPITRES: Omit<ProgrammeChapitre, 'id' | 'created_at'>[] =
   },
 ];
 
-const LOCAL_STORAGE_KEY = 'fastef_programme_chapitres_v4';
+const LOCAL_STORAGE_KEY = 'fastef_programme_chapitres_v5';
 
 export class ProgrammeService {
   /**

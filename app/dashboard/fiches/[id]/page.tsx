@@ -642,20 +642,31 @@ function FicheDetailContent() {
                 </div>
               </div>
 
-              {/* Objectifs Spécifiques */}
-              <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-200 text-xs">
-                <strong className="text-[#0F2C59] block mb-2 font-bold">3. Objectifs Spécifiques (OS) :</strong>
-                <ul className="list-disc list-inside space-y-1 text-slate-700 font-medium">
-                  {contenuGenere.objectifs_specifiques.map((os, i) => (
-                    <li key={i}>{os}</li>
-                  ))}
-                </ul>
+              {/* Objectifs Spécifiques & Plan de cours */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-200">
+                  <strong className="text-[#0F2C59] block mb-2 font-bold">3. Objectifs Spécifiques (OS) :</strong>
+                  <ul className="list-disc list-inside space-y-1 text-slate-700 font-medium">
+                    {contenuGenere.objectifs_specifiques.map((os, i) => (
+                      <li key={i}>{os}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <strong className="text-[#0F2C59] block mb-2 font-bold">4. Plan de la séance (Conforme au programme) :</strong>
+                  <ol className="list-decimal list-inside space-y-1 text-slate-700 font-medium">
+                    {contenuGenere.plan.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ol>
+                </div>
               </div>
 
               {/* Déroulement des sections de cours */}
               <div className="space-y-5">
                 <h3 className="font-bold text-slate-900 text-sm border-b border-slate-200 pb-2">
-                  4. Déroulement séquencé du cours
+                  5. Déroulement séquencé du cours (Illustrations & Synthèse)
                 </h3>
 
                 {contenuGenere.sections.map((sec, idx) => (
